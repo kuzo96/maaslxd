@@ -15,8 +15,8 @@ maintainers:
   - name: hath
     url: https://cpt.gov.vn
 
-version: 1.0.2
-appVersion: "22.6.0"
+version: 1.0.3
+appVersion: "latest"
 
 dependencies:
   - name: mariadb
