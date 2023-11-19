@@ -11,12 +11,11 @@ home: https://cpt.gov.vn
 icon: https://www.librenms.org/images/android-chrome-192x192.png
 sources:
   - https://github.com/librenms/docker
-  - https://github.com/crazy-max/docker-rrdcached
 maintainers:
   - name: hath
     url: https://cpt.gov.vn
 
-version: 0.2.8
+version: 1.0.0
 appVersion: "22.6.0"
 
 dependencies:
