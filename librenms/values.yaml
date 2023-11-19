@@ -1,5 +1,5 @@
 image:
-  repository: librenms/librenms
+  repository: repo.cpt.gov.vn:443/demo/librenms
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
@@ -26,12 +26,12 @@ securityContext: &defaultSecurityContext
 ingress:
   annotations: {}
   enabled: true
-  hostname: librenms.nrp-nautilus.io
-  kubernetes.io/ingress.class: haproxy
-  ingressClassName: haproxy
+  hostname: librenms.cpt.gov.vn
+#  kubernetes.io/ingress.class: haproxy
+  ingressClassName: ""
   tls: true
 
-timezone: &timezone Europe/London
+timezone: &timezone Asia/Ho_Chi_Minh
 nagios: true
 
 app:
