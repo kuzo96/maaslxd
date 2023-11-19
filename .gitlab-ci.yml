@@ -1,0 +1,11 @@
+image:
+  name: alpine/helm:3.8.1
+  entrypoint: ["/bin/sh", "-c"]
+
+deploy-helm:
+  only:
+    - master
+  script:
+    - helm upgrade --cleanup-on-fail --install librenms librenms -n librenms
+  environment:
+    name: nautilus

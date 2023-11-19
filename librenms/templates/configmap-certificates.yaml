@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "librenms.fullname" . }}-certificates
+data:
+{{- with .Files.Glob "certificates/*" }}
+{{ .AsConfig | indent 2 }}
+{{- end }}

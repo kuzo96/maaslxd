@@ -1,0 +1,39 @@
+apiVersion: v2
+name: librenms
+type: application
+description: SNMP monitoring for network devices
+keywords:
+  - nms
+  - network
+  - snmp
+  - monitoring
+home: https://github.com/midokura/helm-charts-community/tree/main/librenms
+icon: https://www.librenms.org/images/android-chrome-192x192.png
+sources:
+  - https://github.com/librenms/docker
+  - https://github.com/crazy-max/docker-rrdcached
+maintainers:
+  - name: David Girón
+    url: https://github.com/duhow
+
+version: 0.2.8
+appVersion: "22.6.0"
+
+dependencies:
+  - name: mariadb
+    alias: mysql
+    repository: https://charts.bitnami.com/bitnami
+    version: 9.6.3
+    condition: mysql.install
+  - name: memcached
+    repository: https://charts.bitnami.com/bitnami
+    version: 5.15.7
+    condition: memcached.install
+    tags:
+      - distributed-poller
+  - name: redis
+    repository: https://charts.bitnami.com/bitnami
+    version: 15.5.1
+    condition: redis.install
+    tags:
+      - distributed-poller
