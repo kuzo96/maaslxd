@@ -1,7 +1,7 @@
 image:
   repository: repo.cpt.gov.vn:443/demo/librenms
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # Overrides the image tag whose default is the chart appVersions.
   tag: ""
 
 imagePullSecrets: []
