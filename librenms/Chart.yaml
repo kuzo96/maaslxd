@@ -7,14 +7,14 @@ keywords:
   - network
   - snmp
   - monitoring
-home: https://github.com/midokura/helm-charts-community/tree/main/librenms
+home: https://cpt.gov.vn
 icon: https://www.librenms.org/images/android-chrome-192x192.png
 sources:
   - https://github.com/librenms/docker
   - https://github.com/crazy-max/docker-rrdcached
 maintainers:
-  - name: David Girón
-    url: https://github.com/duhow
+  - name: hath
+    url: https://cpt.gov.vn
 
 version: 0.2.8
 appVersion: "22.6.0"
