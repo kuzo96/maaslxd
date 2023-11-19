@@ -39,21 +39,21 @@ app:
   replicaCount: 1
   nodeSelector: {}
   tolerations: []
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-            - k8s-igrok-01.calit2.optiputer.net
-            - k8s-igrok-02.calit2.optiputer.net
-            - k8s-igrok-03.calit2.optiputer.net
-            - k8s-igrok-04.calit2.optiputer.net
-            - k8s-igrok-05.calit2.optiputer.net
-            - k8s-igrok-06.calit2.optiputer.net
-            - k8s-igrok-07.calit2.optiputer.net
+  affinity: []
+    # nodeAffinity:
+    #   requiredDuringSchedulingIgnoredDuringExecution:
+    #     nodeSelectorTerms:
+    #     - matchExpressions:
+    #       - key: kubernetes.io/hostname
+    #         operator: In
+    #         values:
+    #         - k8s-igrok-01.calit2.optiputer.net
+    #         - k8s-igrok-02.calit2.optiputer.net
+    #         - k8s-igrok-03.calit2.optiputer.net
+    #         - k8s-igrok-04.calit2.optiputer.net
+    #         - k8s-igrok-05.calit2.optiputer.net
+    #         - k8s-igrok-06.calit2.optiputer.net
+    #         - k8s-igrok-07.calit2.optiputer.net
   podAnnotations: {}
   podSecurityContext:
     fsGroup: 1000
