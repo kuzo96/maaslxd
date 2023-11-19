@@ -49,6 +49,7 @@ app:
             values:
             - juju-d7f38f-cpt-k8s-on-openstack-7
             - juju-d7f38f-cpt-k8s-on-openstack-8
+            - juju-d7f38f-cpt-k8s-on-openstack
   podAnnotations: {}
   podSecurityContext:
     fsGroup: 1000
