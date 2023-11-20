@@ -12,6 +12,7 @@ spec:
   ports:
     - name: rrd
       port: 42217
+      targetPort: 42217
       protocol: TCP
   selector:
     {{- include "librenms.app.selectorLabels" . | nindent 4 }}
