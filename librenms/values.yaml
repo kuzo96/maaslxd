@@ -82,17 +82,17 @@ poller:
   replicaCount: 1
   cacheDriver: redis
   nodeSelector:
-    topology.kubernetes.io/zone: ucsd
-  tolerations: []
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-            - key: nautilus.io/igrok
-              operator: In
-              values:
-                - "true"
+    juju-application: kubernetes-worker
+  # tolerations: []
+  # affinity:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #         - matchExpressions:
+  #           - key: nautilus.io/igrok
+  #             operator: In
+  #             values:
+  #               - "true"
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: *defaultSecurityContext
@@ -107,7 +107,7 @@ poller:
 syslog:
   replicaCount: 1
   nodeSelector:
-    topology.kubernetes.io/zone: ucsd
+    juju-application: kubernetes-worker
   tolerations: []
   affinity: {}
   podAnnotations: {}
@@ -147,7 +147,7 @@ rrdcached:
 mysql:
   install: true
   nodeSelector:
-    topology.kubernetes.io/zone: ucsd
+    juju-application: kubernetes-worker
   serviceAccount:
     create: false
   auth:
@@ -177,7 +177,7 @@ mysql:
 redis:
   install: true
   nodeSelector:
-    topology.kubernetes.io/zone: ucsd
+    juju-application: kubernetes-worker
   serviceAccount:
     create: false
   architecture: standalone
@@ -191,7 +191,7 @@ redis:
 memcached:
   install: true
   nodeSelector:
-    topology.kubernetes.io/zone: ucsd
+    juju-application: kubernetes-worker
   serviceAccount:
     create: false
   resources:
