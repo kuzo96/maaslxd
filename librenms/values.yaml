@@ -37,19 +37,20 @@ nagios: false
 app:
   key: null
   replicaCount: 1
-  nodeSelector: {}
-  tolerations: []
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubernetes.io/hostname
-            operator: In
-            values:
-            - juju-d7f38f-cpt-k8s-on-openstack-7
-            - juju-d7f38f-cpt-k8s-on-openstack-8
-            - juju-d7f38f-cpt-k8s-on-openstack
+  nodeSelector:
+    juju-application: kubernetes-worker
+  # tolerations: []
+  # affinity:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: kubernetes.io/hostname
+  #           operator: In
+  #           values:
+  #           - juju-d7f38f-cpt-k8s-on-openstack-7
+  #           - juju-d7f38f-cpt-k8s-on-openstack-8
+  #           - juju-d7f38f-cpt-k8s-on-openstack
   podAnnotations: {}
   podSecurityContext:
     fsGroup: 1000
