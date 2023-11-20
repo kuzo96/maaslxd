@@ -7,8 +7,8 @@ metadata:
 spec:
   type: {{ .Values.app.service.type }}
   {{- if eq .Values.app.service.type "ClusterIP" }}
-  clusterIP: None
-  {{- end }}
+  # clusterIP: None
+  # {{- end }}
   ports:
     - name: rrd
       port: 42217
