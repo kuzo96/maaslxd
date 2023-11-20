@@ -1,7 +1,7 @@
 Application:
   TLS: null
   baseURL: null
-  ingressHost: null
+  ingressHost: librenms.cpt.gov.vn
   ingressPath: /
   installLoadBalancer: false
   memoryLimit: 1024
@@ -49,16 +49,16 @@ cleanupApplication:
     tag: 0.1.1
 credentials:
   application:
-    administrativeEmail: null
-    administrativePassword: null
-    administrativeUser: null
-    key: null
+    administrativeEmail: hath@cpt.gov.vn
+    administrativePassword: librenms
+    administrativeUser: librenms
+    key: librenms
   mysql:
-    password: null
-    rootPassword: null
-    user: null
+    password: librenms
+    rootPassword: librenms
+    user: librenms
   redis:
-    password: null
+    password: librenms
 librenmsServices:
   global: {}
   memcached:
