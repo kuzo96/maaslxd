@@ -32,7 +32,7 @@ ingress:
   tls: true
 
 timezone: &timezone Asia/Ho_Chi_Minh
-nagios: false
+nagios: true
 
 app:
   key: null

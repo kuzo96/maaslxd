@@ -6,7 +6,7 @@ metadata:
     {{- include "librenms.app.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.app.service.type }}
-  {{- if eq .Values.app.service.type "ClusterIP" }}
+  # {{- if eq .Values.app.service.type "ClusterIP" }}
   # clusterIP: None
   # {{- end }}
   ports:
