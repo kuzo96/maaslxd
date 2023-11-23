@@ -1,6 +1,6 @@
 apiVersion: v2
 name: nextcloud
-version: 1.0.5
+version: 1.0.6
 appVersion: 27.1.3
 description: A file sharing server that puts the control and security of your own data back into your hands.
 keywords:
@@ -17,6 +17,7 @@ sources:
 maintainers:
   - name: hath
     email: hath@cpt.gov.vn
+dependencies:
   - name: postgresql
     version: 12.12.*
     repository: oci://registry-1.docker.io/bitnamicharts
