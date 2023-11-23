@@ -15,7 +15,7 @@ maintainers:
   - name: hath
     url: https://cpt.gov.vn
 
-version: 1.0.13
+version: 1.0.14
 appVersion: "latest"
 
 dependencies:
