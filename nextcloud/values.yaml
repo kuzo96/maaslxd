@@ -2,74 +2,11 @@
 ## ref: https://hub.docker.com/r/library/nextcloud/tags/
 ##
 image:
-  repository: nextcloud
+  repository: repo.cpt.gov.vn/staging/collaboration
   # tag: 24.0.3-apache
   pullPolicy: IfNotPresent
   # pullSecrets:
   #   - myRegistrKeySecretName
-
-nameOverride: ""
-fullnameOverride: ""
-podAnnotations: {}
-deploymentAnnotations: {}
-deploymentLabels: {}
-
-# Number of replicas to be deployed
-replicaCount: 1
-
-## Allowing use of ingress controllers
-## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
-##
-ingress:
-  enabled: true
-  # className: nginx
-  annotations: {}
-  #  nginx.ingress.kubernetes.io/proxy-body-size: 4G
-  #  kubernetes.io/tls-acme: "true"
-  #  cert-manager.io/cluster-issuer: letsencrypt-prod
-  #  nginx.ingress.kubernetes.io/server-snippet: |-
-  #    server_tokens off;
-  #    proxy_hide_header X-Powered-By;
-  #    rewrite ^/.well-known/webfinger /index.php/.well-known/webfinger last;
-  #    rewrite ^/.well-known/nodeinfo /index.php/.well-known/nodeinfo last;
-  #    rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
-  #    rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
-  #    location = /.well-known/carddav {
-  #      return 301 $scheme://$host/remote.php/dav;
-  #    }
-  #    location = /.well-known/caldav {
-  #      return 301 $scheme://$host/remote.php/dav;
-  #    }
-  #    location = /robots.txt {
-  #      allow all;
-  #      log_not_found off;
-  #      access_log off;
-  #    }
-  #    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
-  #      deny all;
-  #    }
-  #    location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
-  #      deny all;
-  #    }
-  # tls:
-  #   - secretName: nextcloud-tls
-  #     hosts:
-  #       - nextcloud.kube.home
-  labels: {}
-  path: /
-  pathType: Prefix
-
-
-# Allow configuration of lifecycle hooks
-# ref: https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
-lifecycle: {}
-  # postStartCommand: []
-  # preStopCommand: []
-
-phpClientHttpsFix:
-  enabled: false
-  protocol: https
-
 nextcloud:
   host: nc.cpt.gov.vn
   username: admin
@@ -206,6 +143,69 @@ nextcloud:
   #   runAsGroup: 33
   #   runAsNonRoot: true
   #   readOnlyRootFilesystem: false
+nameOverride: ""
+fullnameOverride: ""
+podAnnotations: {}
+deploymentAnnotations: {}
+deploymentLabels: {}
+
+# Number of replicas to be deployed
+replicaCount: 1
+
+## Allowing use of ingress controllers
+## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
+##
+ingress:
+  enabled: true
+  # className: nginx
+  annotations: {}
+  #  nginx.ingress.kubernetes.io/proxy-body-size: 4G
+  #  kubernetes.io/tls-acme: "true"
+  #  cert-manager.io/cluster-issuer: letsencrypt-prod
+  #  nginx.ingress.kubernetes.io/server-snippet: |-
+  #    server_tokens off;
+  #    proxy_hide_header X-Powered-By;
+  #    rewrite ^/.well-known/webfinger /index.php/.well-known/webfinger last;
+  #    rewrite ^/.well-known/nodeinfo /index.php/.well-known/nodeinfo last;
+  #    rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+  #    rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+  #    location = /.well-known/carddav {
+  #      return 301 $scheme://$host/remote.php/dav;
+  #    }
+  #    location = /.well-known/caldav {
+  #      return 301 $scheme://$host/remote.php/dav;
+  #    }
+  #    location = /robots.txt {
+  #      allow all;
+  #      log_not_found off;
+  #      access_log off;
+  #    }
+  #    location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)/ {
+  #      deny all;
+  #    }
+  #    location ~ ^/(?:autotest|occ|issue|indie|db_|console) {
+  #      deny all;
+  #    }
+  # tls:
+  #   - secretName: nextcloud-tls
+  #     hosts:
+  #       - nextcloud.kube.home
+  labels: {}
+  path: /
+  pathType: Prefix
+
+
+# Allow configuration of lifecycle hooks
+# ref: https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
+lifecycle: {}
+  # postStartCommand: []
+  # preStopCommand: []
+
+phpClientHttpsFix:
+  enabled: false
+  protocol: https
+
+
 
 nginx:
   ## You need to set an fpm version of the image for nextcloud if you want to use nginx!
