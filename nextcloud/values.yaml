@@ -3,7 +3,7 @@
 ##
 image:
   repository: repo.cpt.gov.vn/staging/collaboration
-  # tag: 24.0.3-apache
+  tag: latest
   pullPolicy: IfNotPresent
   # pullSecrets:
   #   - myRegistrKeySecretName
