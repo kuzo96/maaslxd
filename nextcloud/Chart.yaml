@@ -15,13 +15,8 @@ sources:
   - https://github.com/nextcloud/helm
   - https://github.com/nextcloud/docker
 maintainers:
-  - name: skjnldsv
-    email: skjnldsv@protonmail.com
-  - name: chrisingenhaag
-    email: christian.ingenhaag@googlemail.com
-  - name: billimek
-    email: jeff@billimek.com
-dependencies:
+  - name: hath
+    email: hath@cpt.gov.vn
   - name: postgresql
     version: 12.12.*
     repository: oci://registry-1.docker.io/bitnamicharts
