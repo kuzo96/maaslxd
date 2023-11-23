@@ -73,17 +73,17 @@ phpClientHttpsFix:
 nextcloud:
   host: nc.cpt.gov.vn
   username: admin
-  password: admin
+  password: changeme
   ## Use an existing secret
   existingSecret:
     enabled: false
     # secretName: nameofsecret
     usernameKey: nextcloud-username
-    passwordKey: nextcloud111
-    tokenKey: nextcloud111
+    passwordKey: nextcloud-password
+    tokenKey: nextcloud-token
     smtpUsernameKey: smtp-username
     smtpPasswordKey: smtp-password
-    smtpHostKey: mail.cpt.gov.vn
+    smtpHostKey: smtp-host
   update: 0
   # If web server is not binding default port, you can define it
   containerPort: 80
@@ -93,11 +93,11 @@ nextcloud:
   mail:
     enabled: false
     fromAddress: user
-    domain: mail.cpt.gov.vn
+    domain: domain.com
     smtp:
-      host: mail.cpt.gov.vn
+      host: domain.com
       secure: ssl
-      port: 587
+      port: 465
       authtype: LOGIN
       name: user
       password: pass
@@ -249,10 +249,10 @@ externalDatabase:
   host:
 
   ## Database user
-  user: nextcloud111
+  user: nextcloud
 
   ## Database password
-  password: "nextcloud111"
+  password: ""
 
   ## Database name
   database: nextcloud
@@ -261,8 +261,8 @@ externalDatabase:
   existingSecret:
     enabled: false
     # secretName: nameofsecret
-    usernameKey: nextcloud111
-    passwordKey: db-nextcloud111
+    usernameKey: db-username
+    passwordKey: db-password
     # hostKey: db-hostname-or-ip
     # databaseKey: db-name
 
@@ -279,7 +279,7 @@ mariadb:
   auth:
     database: nextcloud
     username: nextcloud
-    password: nextcloud111
+    password: changeme
     # Use existing secret (auth.rootPassword, auth.password, and auth.replicationPassword will be ignored).
     # secret must contain the keys mariadb-root-password, mariadb-replication-password and mariadb-password
     existingSecret: ""
@@ -309,7 +309,7 @@ postgresql:
       # global.postgresql.auth overrides postgresql.auth
       auth:
         username: nextcloud
-        password: nextcloud111
+        password: changeme
         database: nextcloud
         # Name of existing secret to use for PostgreSQL credentials.
         # auth.postgresPassword, auth.password, and auth.replicationPassword will be ignored and picked up from this secret.
@@ -337,7 +337,7 @@ redis:
   enabled: false
   auth:
     enabled: true
-    password: 'nextcloud111'
+    password: 'changeme'
     # name of an existing secret with Redis® credentials (instead of auth.password), must be created ahead of time
     existingSecret: ""
     # Password key to be retrieved from existing secret
