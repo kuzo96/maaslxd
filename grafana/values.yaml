@@ -57,8 +57,7 @@ commonAnnotations: {}
 image:
   registry: repo.cpt.gov.vn
   repository: staging/grafana
- ## tag: 10.1.4-debian-11-r3
-  tag: "latest"
+  tag: latest
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -585,15 +584,15 @@ service:
   ## clusterIP: None
   ##
   clusterIP: ""
-  ## @param service.ports.grafana Grafana service ports
+  ## @param service.ports.grafana Grafana service port
   ##
   ports:
     grafana: 3000
-  ##2 @param service.nodePorts.grafana Specify the nodePort value for the LoadBalancer and NodePort service types
+  ## @param service.nodePorts.grafana Specify the nodePort value for the LoadBalancer and NodePort service types
   ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
   ##
   nodePorts:
-    grafana: "30000"
+    grafana: ""
   ## @param service.loadBalancerIP loadBalancerIP if Grafana service type is `LoadBalancer` (optional, cloud specific)
   ## ref: https://kubernetes.io/docs/user-guide/services/#type-loadbalancer
   ##
@@ -729,7 +728,7 @@ ingress:
   ##         service:
   ##           name: example-svc
   ##           port:
-  ##             g: http
+  ##             name: http
   ##
   extraRules: []
 
