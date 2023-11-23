@@ -8,14 +8,14 @@ keywords:
   - snmp
   - monitoring
 home: https://cpt.gov.vn
-icon: https://www.librenms.org/images/android-chrome-192x192.png
+icon: https://i.ibb.co/55BmQCw/Libre-NMS-Logo.png
 sources:
   - https://github.com/librenms/docker
 maintainers:
   - name: hath
     url: https://cpt.gov.vn
 
-version: 1.0.14
+version: 1.0.15
 appVersion: "latest"
 
 dependencies:
