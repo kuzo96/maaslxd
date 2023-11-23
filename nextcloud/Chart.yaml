@@ -1,6 +1,6 @@
 apiVersion: v2
 name: nextcloud
-version: 1.0.11
+version: 1.0.12
 appVersion: 27.1.3
 description: A file sharing server that puts the control and security of your own data back into your hands.
 keywords:
@@ -10,7 +10,7 @@ keywords:
   - web
   - php
 home: https://nextcloud.com/
-icon: https://i.ibb.co/PDkHLxh/Nextcloud-Logo-svg.png
+icon: https://i.ibb.co/B4mwLMZ/Nextcloud-Logo-svg.png
 sources:
   - https://github.com/nextcloud/helm
   - https://github.com/nextcloud/docker
