@@ -73,7 +73,7 @@ phpClientHttpsFix:
 nextcloud:
   host: nc.cpt.gov.vn
   username: admin
-  password: changeme
+  password: admin
   ## Use an existing secret
   existingSecret:
     enabled: false
