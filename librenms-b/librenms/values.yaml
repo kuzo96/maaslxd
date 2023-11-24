@@ -1,14 +1,14 @@
 
 credentials:
   application:
-    administrativeUser:
-    administrativePassword:
-    administrativeEmail:
+    administrativeUser: librenms
+    administrativePassword: librenms
+    administrativeEmail: hath@cpt.gov.vn
     key:
   mysql:
-    rootPassword:
-    user:
-    password:
+    rootPassword: librenms
+    user: librenms
+    password: librenms
   ldap:
     user:
     userDN:
@@ -18,7 +18,7 @@ credentials:
     userDN:
     password:
   redis:
-    password:
+    password: librenms
   
 Application:
   serviceType: cluster
@@ -27,7 +27,7 @@ Application:
   authMechanism: "mysql"
   mountCertificates: false
   # for .serviceType 'ingress' ...
-  ingressHost:
+  ingressHost: librenms.cpt.gov.vn
   ingressPath: "/"
   # for .serviceType 'loadBalancer' ...
   installLoadBalancer: false
