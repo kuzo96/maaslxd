@@ -57,7 +57,7 @@ commonAnnotations: {}
 image:
   registry: repo.cpt.gov.vn
   repository: staging/grafana
-  tag: ""
+  tag: latest
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
