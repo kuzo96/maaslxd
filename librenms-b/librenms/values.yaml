@@ -66,19 +66,19 @@ LDAP:
   uidAttribute:
   group:
 
-ActiveDirectory:
-  debug: false
-  url: "ldaps://server.example.org"
-  timeout: 5
-  domain: "example.org"
-  check_certificates: true
-  base_dn: "dc=example,dc=org"
-  users_purge: 30
-  require_groupmembership: true
-  admin_group: "adminGroup"
-  user_group: "userGroup"
-  user_filter:
-  group_filter:
+# ActiveDirectory:
+#   debug: false
+#   url: "ldaps://server.example.org"
+#   timeout: 555
+#   domain: "example.org"
+#   check_certificates: true
+#   base_dn: "dc=example,dc=org"
+#   users_purge: 30
+#   require_groupmembership: true
+#   admin_group: "adminGroup"
+#   user_group: "userGroup"
+#   user_filter:
+#   group_filter:
 
 Dispatcher:
   instances: 4
