@@ -55,9 +55,9 @@ commonAnnotations: {}
 ## @param image.pullSecrets Grafana image pull secrets
 ##
 image:
-  registry: docker.io
-  repository: bitnami/grafana
-  tag: 10.1.4-debian-11-r3
+  registry: repo.cpt.gov.vn
+  repository: staging/grafana
+  tag: ""
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
