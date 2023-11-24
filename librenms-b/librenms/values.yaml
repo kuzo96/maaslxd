@@ -4,7 +4,7 @@ credentials:
     administrativeUser: librenms
     administrativePassword: librenms
     administrativeEmail: hath@cpt.gov.vn
-    key: base64:gqFBYjjVk+dPdNL9Pkz6vUoEUsF2oTlLi5UisI5EGb4=
+    key: gqFBYjjVk+dPdNL9Pkz6vUoEUsF2oTlLi5UisI5EGb4=
   mysql:
     rootPassword: librenms
     user: librenms
