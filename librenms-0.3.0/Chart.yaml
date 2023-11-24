@@ -29,9 +29,9 @@ keywords:
 maintainers:
 - name: hath
   url: https://github.com/duhow
-name: librenms-0.3.0
+name: librenmsc
 sources:
 - https://github.com/librenms/docker
 - https://github.com/crazy-max/docker-rrdcached
 type: application
-version: 1.0.1
+version: 1.0.2
