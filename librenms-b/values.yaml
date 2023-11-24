@@ -5,21 +5,21 @@ Application:
 
 credentials:
   application:
-    administrativeUser: "admin"
-    administrativePassword: "adminPassword"
-    administrativeEmail: "admin@example.org"
+    administrativeUser: "librenms"
+    administrativePassword: "librenms"
+    administrativeEmail: "hath@cpt.gov.vn"
   mysql:
-    rootPassword: "mysqlRootPassword"
+    rootPassword: "librenms"
     user: "librenms"
-    password: "userPassword"
+    password: "librenms"
   ldap:
-    bindUser: "ldapBindUser"
+    bindUser: "librenms"
     bindDN:
-    bindPassword: "ldapBindPassword"
+    bindPassword: "librenms"
   active_directory:
-    bindUser: "adBindUser"
+    bindUser: "librenms"
     bindDN:
-    bindPassword: "adBindPassword"
+    bindPassword: "librenms"
   redis:
-    password: "redisPassword"
+    password: "librenms"
 
