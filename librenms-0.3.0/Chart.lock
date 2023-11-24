@@ -1,0 +1,12 @@
+dependencies:
+- name: mariadb
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.5.1
+- name: memcached
+  repository: https://charts.bitnami.com/bitnami
+  version: 6.0.16
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.8.9
+digest: sha256:ceed1d3aeed4169728f5d21315a351df6f1dd63a3414190e43e53771cfa0a41f
+generated: "2022-05-17T13:41:01.808166326Z"

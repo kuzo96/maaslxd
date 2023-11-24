@@ -12,14 +12,14 @@ credentials:
     rootPassword: "librenms"
     user: "librenms"
     password: "librenms"
-  ldap:
-    bindUser: "librenms"
-    bindDN:
-    bindPassword: "librenms"
-  active_directory:
-    bindUser: "librenms"
-    bindDN:
-    bindPassword: "librenms"
+  # ldap:
+  #   bindUser: "librenms"
+  #   bindDN:
+  #   bindPassword: "librenms"
+  # active_directory:
+  #   bindUser: "librenms"
+  #   bindDN:
+  #   bindPassword: "librenms"
   redis:
     password: "librenms"
 

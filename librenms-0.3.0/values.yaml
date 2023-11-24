@@ -1,0 +1,184 @@
+image:
+  repository: librenms/librenms
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+securityContext: &defaultSecurityContext
+  capabilities:
+    add:
+      - NET_ADMIN
+      - NET_RAW
+
+ingress:
+  enabled: true
+  tls: false
+  hostname: librenms.cpt.gov.vn
+  existingSecret: ""
+  ingressClassName: nginx
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # cert-manager.io/cluster-issuer: letsencrypt
+
+# -- Set Timezone, both in application and MySQL database.
+timezone: &timezone Europe/Madrid
+# -- Download Nagios check scripts before launching application.
+nagios: false
+
+# -- Apply GitHub PR patches. Enter a list of IDs
+applyPatchPR: []
+
+app:
+  # -- Provide your own Artisan encryption key (base64:XXXX)
+  # or create a new one (null).
+  key: null
+  replicaCount: 1
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  podAnnotations: {}
+  podSecurityContext:
+    fsGroup: 1000
+  securityContext: *defaultSecurityContext
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      memory: 200Mi
+
+  persistence:
+    enabled: true
+    size: 4Gi
+    existingClaim: null
+    storageClass: ""
+    annotations: {}
+    accessModes:
+      #- ReadWriteMany
+      - ReadWriteOnce
+
+poller:
+  replicaCount: 1
+  cacheDriver: redis
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  podAnnotations: {}
+  podSecurityContext: {}
+  securityContext: *defaultSecurityContext
+  resources: {}
+  # -- arguments to pass to librenms-service.py.
+  # Valid: -t -d -v -g
+  args: ""
+
+syslog:
+  replicaCount: 1
+  # -- If using UDP + NodePort, we recommend setting a specific node.
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  podAnnotations: {}
+  podSecurityContext: {}
+  securityContext: *defaultSecurityContext
+  service:
+    type: ClusterIP
+    # -- Set value to null to disable the service.
+    ports:
+      tcp: 514
+      udp: 514
+  resources: {}
+
+rrdcached:
+  image:
+    repository: crazymax/rrdcached
+    tag: "1.7.2-r4"
+    pullPolicy: IfNotPresent
+  securityContext:
+    allowPrivilegeEscalation: false
+  service:
+    type: ClusterIP
+    port: 42217
+  resources: {}
+
+smokeping:
+  enabled: false
+  # -- Set amount of pings
+  pings: 20
+  # -- can be 15min, hourly, daily
+  cron: 15min
+  # -- expose to ingress
+  ingress: true
+  config:
+    general:
+      owner: LinuxServer.io
+      contact: ironicbadger@linuxserver.io
+      mailhost: my.mail.host
+  auth:
+    # -- copy from LibreNMS database as htpasswd
+    librenms: true
+    # -- allow guest access
+    guest: false
+  image:
+    repository: linuxserver/smokeping
+    tag: "2.7.3"
+    pullPolicy: IfNotPresent
+
+mysql:
+  install: true
+  serviceAccount:
+    create: false
+  auth:
+    database: librenms
+    username: librenms
+    password: librenms
+    rootPassword: librenms
+  volumePermissions:
+    enabled: true
+  primary:
+    extraEnvVars:
+      - name: TZ
+        value: *timezone
+    persistence:
+      enabled: true
+      size: 2Gi
+
+redis:
+  install: true
+  serviceAccount:
+    create: false
+  architecture: standalone
+  database: 0
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+
+memcached:
+  install: true
+  serviceAccount:
+    create: false
+  resources:
+    limits:
+      memory: 200Mi
+    requests:
+      memory: 10Mi
+
+config: {}
