@@ -27,11 +27,11 @@ keywords:
 - snmp
 - monitoring
 maintainers:
-- name: hath
+- name: David Girón
   url: https://github.com/duhow
-name: librenmsc
+name: librenms
 sources:
 - https://github.com/librenms/docker
 - https://github.com/crazy-max/docker-rrdcached
 type: application
-version: 1.0.4
+version: 0.3.0

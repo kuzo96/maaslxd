@@ -1,8 +1,0 @@
-
-apiVersion: v2
-name: librenms-b
-description: LibreNMS
-type: application
-version: 1.0.9
-appVersion: 1.70
-
