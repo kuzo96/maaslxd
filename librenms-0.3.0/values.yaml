@@ -24,9 +24,9 @@ securityContext: &defaultSecurityContext
       - NET_RAW
 
 ingress:
-  enabled: true
+  enabled: false
   tls: false
-  hostname: librenms.cpt.gov.vn
+  hostname: librenms.local
   existingSecret: ""
   ingressClassName: nginx
   annotations: {}
