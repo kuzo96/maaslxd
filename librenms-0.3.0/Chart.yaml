@@ -34,4 +34,4 @@ sources:
 - https://github.com/librenms/docker
 - https://github.com/crazy-max/docker-rrdcached
 type: application
-version: 1.0.3
+version: 1.0.4
