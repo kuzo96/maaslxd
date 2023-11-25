@@ -7,7 +7,7 @@ metadata:
 spec:
   type: {{ .Values.syslog.service.type }}
   # add source IP address
-  # externalTrafficPolicy: Local
+  externalTrafficPolicy: Local
   ports:
   {{- if (.Values.syslog.service.ports.tcp) }}
     - name: syslog-tcp
