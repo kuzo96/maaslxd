@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: repo.cpt.gov.vn/staging/libre-app
-  tag: "1.4"
+  tag: "latest"
   pullPolicy: IfNotPresent
 nginxService:
   name: nginx
