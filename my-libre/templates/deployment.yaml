@@ -19,12 +19,12 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - containerPort: {{ .Values.phpfpmService.phpfpmPort }}
+        - containerPort: {{ .Values.phpfpmService.port }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
         readinessProbe:
           tcpSocket:
-            port: {{ .Values.phpfpmService.phpfpmPort }}
+            port: {{ .Values.phpfpmService.port }}
           initialDelaySeconds: 10
           timeoutSeconds: 5
 ---
@@ -50,7 +50,7 @@ spec:
         imagePullPolicy: {{ default "" .Values.image.pullPolicy | quote }}
         ports:
         - name: http
-          containerPort: {{ .Values.nginxService.internalPort }}
+          containerPort: {{ .Values.nginxService.port }}
         - name: https
           containerPort: 8443
         livenessProbe:
