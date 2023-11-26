@@ -9,12 +9,20 @@ image:
 nginxService:
   name: nginx
   type: ClusterIP
-  externalPort: 80
-  internalPort: 8080
+  # externalPort: 80
+  # internalPort: 8080
+  ports:
+  - name:  nginx
+    port:  80
+    protocol: TCP
 phpfpmService:
   name: phpfpm
   type: ClusterIP
-  phpfpmPort: 9000
+  # phpfpmPort: 9000
+  ports:
+  - name:  phpfpm
+    port:  9000
+    protocol: TCP
 ingress:
   enabled: true
   # Used to create Ingress record (should used with service.type: ClusterIP).
