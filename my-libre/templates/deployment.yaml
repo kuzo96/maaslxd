@@ -1,21 +1,21 @@
 apiVersion: {{ template "common.capabilities.deployment.apiVersion" . }}
 kind: Deployment
 metadata:
-  name: {{ template "fullname" . }}-php
+  name: {{ template "fullname" . }}-app
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "fullname" . }}-php
+      app: {{ template "fullname" . }}-app
   template:
     metadata:
       labels:
-        app: {{ template "fullname" . }}-php
+        app: {{ template "fullname" . }}-app
     spec:
       containers:
-      - name: {{ template "fullname" . }}-php
+      - name: {{ template "fullname" . }}-app
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:

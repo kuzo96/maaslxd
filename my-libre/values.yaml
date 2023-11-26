@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: repo.cpt.gov.vn/staging/libre-php
+  repository: repo.cpt.gov.vn/staging/libre-app
   tag: latest
   pullPolicy: IfNotPresent
 nginxService:
