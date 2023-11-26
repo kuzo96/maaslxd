@@ -22,8 +22,8 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ $serviceName }}
-              servicePort: {{ $servicePort }}
+              serviceName: {{ .Values.nginxService.name }}
+              servicePort: {{ .Values.nginxService.port }}
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
