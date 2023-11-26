@@ -10,14 +10,24 @@ metadata:
 data:
   nginx.conf: |-
     server {
-      listen 0.0.0.0:{{ .Values.nginxService.internalPort }};
-      root /app;
+      listen      80;
+      server_name libre.cpt.gov.vn;
+      root        /opt/librenms/html;
+      index       index.php;
+
+      charset utf-8;
+      gzip on;
+      gzip_types text/css application/javascript text/javascript application/x-javascript image/svg+xml text/plain text/xsd text/xsl text/xml image/x-icon;
       location / {
-        index index.html index.php;
+        try_files $uri $uri/ /index.php?$query_string;
       }
-      location ~ \.php$ {
-        fastcgi_pass {{ template "fullname" . }}-phpfpm:9000;
-        fastcgi_index index.php;
+      location ~ [^/]\.php(/|$) {
+        fastcgi_pass unix:/run/php-fpm-librenms.sock;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
         include fastcgi.conf;
       }
-    }
+      location ~ /\.(?!well-known).* {
+        deny all;
+      }
+      }
+
