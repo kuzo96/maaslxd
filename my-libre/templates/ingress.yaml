@@ -22,7 +22,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ template "fullname" . }}
+              serviceName: {{ template "fullname" . }}-nginx
               servicePort: {{ .Values.nginxService.port }}
     {{- end -}}
   {{- if .Values.ingress.tls }}
