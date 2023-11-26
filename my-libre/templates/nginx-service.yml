@@ -7,8 +7,8 @@ metadata:
 spec:
   type: {{ .Values.nginxService.type }}
   ports:
-  - port: {{ .Values.nginxService.externalPort }}
-    targetPort: {{ .Values.nginxService.internalPort }}
+  - port: {{ .Values.nginxService.nginxPort }}
+    # targetPort: {{ .Values.nginxService.internalPort }}
     protocol: TCP
     name: {{ .Values.nginxService.name }}
   selector:
