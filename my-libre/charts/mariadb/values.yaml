@@ -251,10 +251,10 @@ master:
 
   ## An array to add extra environment variables
   ## For example:
-  ## extraEnvVars:
-  ##  - name: TZ
-  ##    value: "Europe/Paris"
-  ##
+  extraEnvVars:
+    - name: TZ
+      value: "Asia/Ho_Chi_Minh"
+      
   # extraEnvVars:
 
   ## Configure MySQL with a custom my.cnf file
@@ -383,9 +383,9 @@ slave:
 
   ## An array to add extra environment variables
   ## For example:
-  ## extraEnvVars:
-  ##  - name: TZ
-  ##    value: "Europe/Paris"
+  extraEnvVars:
+    - name: TZ
+      value: "Asia/Ho_Chi_Minh"
   ##
   # extraEnvVars:
 
