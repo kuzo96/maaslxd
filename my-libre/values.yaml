@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: bitnami/phpfpm-app
+  repository: repo.cpt.gov.vn/staging/phpfpm-app
   tag: latest
   pullPolicy: IfNotPresent
 nginxService:
