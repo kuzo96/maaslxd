@@ -29,7 +29,7 @@ keywords:
 maintainers:
 - name: David Girón
   url: https://github.com/duhow
-name: librenms
+name: librenms-beta2
 sources:
 - https://github.com/librenms/docker
 - https://github.com/crazy-max/docker-rrdcached

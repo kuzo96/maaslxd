@@ -1,4 +1,11 @@
 apiVersion: v1
 description: A Helm chart for Kubernetes
-name: my-libre
+name: cpt-librenms
 version: 0.1.33
+home: https://cpt.gov.vn
+icon: https://i.ibb.co/whw7Bhw/Libre-NMS-Logo.png
+sources:
+  - https://github.com/librenms/docker
+maintainers:
+  - name: hath
+    url: https://cpt.gov.vn

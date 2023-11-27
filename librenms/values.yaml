@@ -1,0 +1,205 @@
+image:
+  repository: librenms/librenms
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersions.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+securityContext: &defaultSecurityContext
+  capabilities:
+    add:
+      - NET_ADMIN
+      - NET_RAW
+
+ingress:
+  annotations: {}
+  enabled: true
+  hostname: librenms.cpt.gov.vn
+#  kubernetes.io/ingress.class: haproxy
+  ingressClassName: ""
+  tls: true
+
+timezone: &timezone Asia/Ho_Chi_Minh
+nagios: true
+
+app:
+  key: null
+  replicaCount: 1
+  nodeSelector:
+    juju-application: kubernetes-worker
+  # tolerations: []
+  # affinity:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #       - matchExpressions:
+  #         - key: kubernetes.io/hostname
+  #           operator: In
+  #           values:
+  #           - juju-d7f38f-cpt-k8s-on-openstack-7
+  #           - juju-d7f38f-cpt-k8s-on-openstack-8
+  #           - juju-d7f38f-cpt-k8s-on-openstack
+  podAnnotations: {}
+  podSecurityContext:
+    fsGroup: 1000
+  securityContext: *defaultSecurityContext
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+
+  persistence:
+    enabled: true
+    size: 4Gi
+    existingClaim: null
+    storageClass: ""
+    annotations: {}
+    accessModes:
+      #- ReadWriteMany
+      - ReadWriteOnce
+
+poller:
+  replicaCount: 1
+  cacheDriver: redis
+  nodeSelector:
+    juju-application: kubernetes-worker
+  # tolerations: []
+  # affinity:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #         - matchExpressions:
+  #           - key: nautilus.io/igrok
+  #             operator: In
+  #             values:
+  #               - "true"
+  podAnnotations: {}
+  podSecurityContext: {}
+  securityContext: *defaultSecurityContext
+  resources:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+
+syslog:
+  replicaCount: 1
+  nodeSelector:
+    juju-application: kubernetes-worker
+  tolerations: []
+  affinity: {}
+  podAnnotations: {}
+  podSecurityContext: {}
+  securityContext: *defaultSecurityContext
+  service:
+    type: ClusterIP
+    ports:
+      tcp: 514
+      udp: 514
+  resources:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+
+rrdcached:
+  image:
+    repository: crazymax/rrdcached
+    tag: "1.7.2-r4"
+    pullPolicy: IfNotPresent
+  securityContext:
+    allowPrivilegeEscalation: false
+  service:
+    type: ClusterIP
+    port: 42217
+  resources:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+
+mysql:
+  install: true
+  nodeSelector:
+    juju-application: kubernetes-worker
+  serviceAccount:
+    create: false
+  auth:
+    database: librenms
+    username: librenms
+    password: librenms
+    rootPassword: librenms
+  volumePermissions:
+    enabled: true
+  primary:
+    extraEnvVars:
+      - name: TZ
+        value: *timezone
+    persistence:
+      enabled: true
+      size: 2Gi
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #         - matchExpressions:
+    #           - key: nautilus.io/igrok
+    #             operator: In
+    #             values:
+    #               - "true"
+
+redis:
+  install: true
+  nodeSelector:
+    juju-application: kubernetes-worker
+  serviceAccount:
+    create: false
+  architecture: standalone
+  database: 0
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+
+memcached:
+  install: true
+  nodeSelector:
+    juju-application: kubernetes-worker
+  serviceAccount:
+    create: false
+  resources:
+    limits:
+      cpu: 1
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+
+config: {}
