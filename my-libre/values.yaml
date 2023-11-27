@@ -65,10 +65,31 @@ resources:
     memory: 1Gi
 
 persistence:
+- name: app
   enabled: true
   size: 10Gi
  # existingClaim: null
   mountPath: /opt/librenms
+  storageClass: ""
+  annotations: {}
+  accessModes:
+      #- ReadWriteMany
+    - ReadWriteOnce
+- name: mysqldata
+  enabled: true
+  size: 10Gi
+ # existingClaim: null
+  mountPath: /var/lib/mysql/
+  storageClass: ""
+  annotations: {}
+  accessModes:
+      #- ReadWriteMany
+    - ReadWriteOnce
+- name: mysqlconfig
+  enabled: true
+  size: 1Gi
+ # existingClaim: null
+  mountPath: /etc/mysql/
   storageClass: ""
   annotations: {}
   accessModes:
