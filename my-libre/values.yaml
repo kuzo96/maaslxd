@@ -67,7 +67,8 @@ resources:
 persistence:
   enabled: true
   size: 10Gi
-  existingClaim: null
+ # existingClaim: null
+  mountPath: /opt/librenms
   storageClass: ""
   annotations: {}
   accessModes:
