@@ -37,13 +37,13 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ .Values.persistence.data.name }}
+            claimName: {{ .Values.app.persistence.existingClaim }}
         - name: mysqldata
           persistentVolumeClaim:
-            claimName: {{ .Values.persistence.mysqldata.name }}
+            claimName: {{ .Values.mysqldata.persistence.existingClaim }}
         - name: mysqlconfig
           persistentVolumeClaim:
-            claimName: {{ .Values.persistence.mysqlconfig.name }}
+            claimName: {{ .Values.mysqlconfig.persistence.existingClaim }}
   volumeClaimTemplates:
     - metadata:
         name: data

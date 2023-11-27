@@ -64,18 +64,19 @@ resources:
     cpu: 1000m
     memory: 1Gi
 
-persistence:
-- name: app
-  enabled: true
-  size: 10Gi
- # existingClaim: null
-  mountPath: /opt/librenms
-  storageClass: ""
-  annotations: {}
-  accessModes:
-      #- ReadWriteMany
-    - ReadWriteOnce
-- name: mysqldata
+app:
+  persistence:
+    enabled: true
+    size: 10Gi
+  # existingClaim: null
+    mountPath: /opt/librenms
+    storageClass: ""
+    annotations: {}
+    accessModes:
+        #- ReadWriteMany
+      - ReadWriteOnce
+mysqldata:
+  persistence:
   enabled: true
   size: 10Gi
  # existingClaim: null
@@ -85,7 +86,8 @@ persistence:
   accessModes:
       #- ReadWriteMany
     - ReadWriteOnce
-- name: mysqlconfig
+mysqlconfig:
+  persistence:
   enabled: true
   size: 1Gi
  # existingClaim: null
