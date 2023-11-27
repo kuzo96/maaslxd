@@ -17,6 +17,7 @@ phpService:
   type: ClusterIP
   # phpPort: 9000
   port:  80
+  
 ingress:
   enabled: false
   # Used to create Ingress record (should used with service.type: ClusterIP).
@@ -62,10 +63,10 @@ resources:
   requests:
     cpu: 1000m
     memory: 1Gi
-    
+
 persistence:
   enabled: true
-  size: 4Gi
+  size: 10Gi
   existingClaim: null
   storageClass: ""
   annotations: {}

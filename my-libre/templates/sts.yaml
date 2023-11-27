@@ -30,20 +30,11 @@ spec:
         volumeMounts:
             - name: data
               mountPath: /opt/librenms
-            volumes:
-        - name: config
-          configMap:
-            name: {{ include "librenms.fullname" . }}-config
-        - name: rrd-journal
-          emptyDir: {}
-        - name: nagios
-          emptyDir: {}
-        {{- if and .Values.app.persistence.enabled .Values.app.persistence.existingClaim }}
+      volumes:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.app.persistence.existingClaim . }}
         {{- else if not .Values.app.persistence.enabled }}
-        - name: data
   volumeClaimTemplates:
     - metadata:
         name: data
