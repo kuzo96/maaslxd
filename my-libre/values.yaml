@@ -68,7 +68,7 @@ app:
   persistence:
     enabled: true
     size: 10Gi
-  # existingClaim: null
+    existingClaim: ""
     mountPath: /opt/librenms
     storageClass: ""
     annotations: {}
@@ -79,7 +79,7 @@ mysqldata:
   persistence:
   enabled: true
   size: 10Gi
- # existingClaim: null
+  existingClaim: ""
   mountPath: /var/lib/mysql/
   storageClass: ""
   annotations: {}
@@ -90,7 +90,7 @@ mysqlconfig:
   persistence:
   enabled: true
   size: 1Gi
- # existingClaim: null
+  existingClaim: ""
   mountPath: /etc/mysql/
   storageClass: ""
   annotations: {}
