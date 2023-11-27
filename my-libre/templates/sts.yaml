@@ -27,3 +27,6 @@ spec:
             port: {{ .Values.phpService.port }}
           initialDelaySeconds: 10
           timeoutSeconds: 5
+        volumeMounts:
+            - name: data
+              mountPath: /opt/librenms
