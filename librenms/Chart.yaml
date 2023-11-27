@@ -8,7 +8,7 @@ keywords:
   - snmp
   - monitoring
 home: https://cpt.gov.vn
-icon: https://i.ibb.co/whw7Bhw/Libre-NMS-Logo.png
+# icon: https://i.ibb.co/whw7Bhw/Libre-NMS-Logo.png
 sources:
   - https://github.com/librenms/docker
 maintainers:
