@@ -55,7 +55,6 @@ ingress:
 #       }
 #       }
 
-
 resources:
   limits:
     cpu: 1000m
@@ -63,3 +62,13 @@ resources:
   requests:
     cpu: 1000m
     memory: 1Gi
+    
+persistence:
+  enabled: true
+  size: 4Gi
+  existingClaim: null
+  storageClass: ""
+  annotations: {}
+  accessModes:
+      #- ReadWriteMany
+    - ReadWriteOnce

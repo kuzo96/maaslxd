@@ -30,3 +30,39 @@ spec:
         volumeMounts:
             - name: data
               mountPath: /opt/librenms
+            volumes:
+        - name: config
+          configMap:
+            name: {{ include "librenms.fullname" . }}-config
+        - name: rrd-journal
+          emptyDir: {}
+        - name: nagios
+          emptyDir: {}
+        {{- if and .Values.app.persistence.enabled .Values.app.persistence.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.app.persistence.existingClaim . }}
+        {{- else if not .Values.app.persistence.enabled }}
+        - name: data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          {{ include "librenms.app.labels" . | nindent 10 }}
+        {{- if .Values.persistence.annotations }}
+        annotations:
+          {{- toYaml .Values.persistence.annotations | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          {{- range .Values.persistence.accessModes }}
+          - {{ . | quote }}
+          {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.size | quote }}
+        storageClass: {{ .Values.persistence.storageClass }}
+        {{- if .Values.persistence.selector }}
+        selector:
+          {{- toYaml .Values.persistence.selector | nindent 10 }}
+        {{- end }}
