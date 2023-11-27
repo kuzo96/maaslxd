@@ -1,5 +1,5 @@
 apiVersion: {{ template "common.capabilities.deployment.apiVersion" . }}
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ template "fullname" . }}-app
   labels:

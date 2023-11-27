@@ -1,0 +1,25 @@
+
+Application:
+  serviceType: ingress
+  ingressHost: "librenms.cpt.gov.vn"
+
+credentials:
+  application:
+    administrativeUser: "librenms"
+    administrativePassword: "librenms"
+    administrativeEmail: "hath@cpt.gov.vn"
+  mysql:
+    rootPassword: "librenms"
+    user: "librenms"
+    password: "librenms"
+  # ldap:
+  #   bindUser: "librenms"
+  #   bindDN:
+  #   bindPassword: "librenms"
+  # active_directory:
+  #   bindUser: "librenms"
+  #   bindDN:
+  #   bindPassword: "librenms"
+  redis:
+    password: "librenms"
+
