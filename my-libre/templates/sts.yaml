@@ -38,7 +38,7 @@ spec:
     - metadata:
         name: data
         labels:
-          {{ include "librenms.app.labels" . | nindent 10 }}
+          app: {{ template "fullname" . }}-app
         {{- if .Values.persistence.annotations }}
         annotations:
           {{- toYaml .Values.persistence.annotations | nindent 10 }}
