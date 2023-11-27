@@ -33,7 +33,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim . }}
+            claimName: {{ .Values.persistence.existingClaim }}
   volumeClaimTemplates:
     - metadata:
         name: data
