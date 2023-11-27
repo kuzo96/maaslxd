@@ -33,8 +33,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ .Values.app.persistence.existingClaim . }}
-        {{- else if not .Values.app.persistence.enabled }}
+            claimName: {{ .Values.persistence.existingClaim . }}
   volumeClaimTemplates:
     - metadata:
         name: data
