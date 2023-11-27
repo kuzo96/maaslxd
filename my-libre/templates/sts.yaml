@@ -30,18 +30,18 @@ spec:
         volumeMounts:
             - name: data
               mountPath: /opt/librenms
-            - name: mysql_data
+            - name: mysqldata
               mountPath: /var/lib/mysql/
-            - name: mysql_config
+            - name: mysqlconfig
               mountPath: /etc/mysql/
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim }}
-        - name: mysql_data
+        - name: mysqldata
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim }}
-        - name: mysql_config
+        - name: mysqlconfig
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim }}
   volumeClaimTemplates:
