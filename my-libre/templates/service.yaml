@@ -12,4 +12,4 @@ spec:
     protocol: TCP
     name: {{ .Values.phpService.name }}
   selector:
-    app.kubernetes.io/name: {{ template "fullname" . }}-app
+    app: {{ template "fullname" . }}-app
