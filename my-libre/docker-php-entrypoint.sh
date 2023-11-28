@@ -11,7 +11,7 @@ tar -xf /librenms.tar.gz -C /opt &
 tar -xf /mariadb.tar.gz -C /opt &
 php-fpm8.1 &
 nginx &
-mysqld_safe
+mysqld_safe &
 syslog-ng &
 cron -f /etc/cron.d/librenms &
 cd /opt/librenms &

@@ -20,7 +20,7 @@
 	
 	dockerBuildCommand = './'
     // def version = "prod-0.${BUILD_NUMBER}"
-    def version = "1.4"
+    def version = "1.5"
 
 	pipeline {
 		agent any
