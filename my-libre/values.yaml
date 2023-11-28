@@ -64,34 +64,12 @@ resources:
     cpu: 1000m
     memory: 1Gi
 
-app:
-  persistence:
-    enabled: true
-    size: 10Gi
-    existingClaim: ""
-    mountPath: /opt/librenms
-    storageClass: ""
-    annotations: {}
-    accessModes:
-        #- ReadWriteMany
-      - ReadWriteOnce
-mysqldata:
-  persistence:
+
+persistence:
   enabled: true
   size: 10Gi
   existingClaim: ""
-  mountPath: /var/lib/mysql/
-  storageClass: ""
-  annotations: {}
-  accessModes:
-      #- ReadWriteMany
-    - ReadWriteOnce
-mysqlconfig:
-  persistence:
-  enabled: true
-  size: 1Gi
-  existingClaim: ""
-  mountPath: /etc/mysql/
+  mountPath: /opt/
   storageClass: ""
   annotations: {}
   accessModes:

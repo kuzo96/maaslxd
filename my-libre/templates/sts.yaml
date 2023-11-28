@@ -29,21 +29,11 @@ spec:
           timeoutSeconds: 5
         volumeMounts:
             - name: data
-              mountPath: /opt/librenms
-            - name: mysqldata
-              mountPath: /var/lib/mysql/
-            - name: mysqlconfig
-              mountPath: /etc/mysql/
+              mountPath:  {{ .Values.app.persistence.mountPath }}
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: {{ .Values.app.persistence.existingClaim }}
-        - name: mysqldata
-          persistentVolumeClaim:
-            claimName: {{ .Values.mysqldata.persistence.existingClaim }}
-        - name: mysqlconfig
-          persistentVolumeClaim:
-            claimName: {{ .Values.mysqlconfig.persistence.existingClaim }}
   volumeClaimTemplates:
     - metadata:
         name: data
