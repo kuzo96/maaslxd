@@ -19,8 +19,8 @@
 	def gitlabCredential = 'jenkin_gitlab'
 	
 	dockerBuildCommand = './'
-    def version = "prod-0.${BUILD_NUMBER}"
-    // def version = "1.4"
+    // def version = "prod-0.${BUILD_NUMBER}"
+    def version = "1.4"
 
 	pipeline {
 		agent any
