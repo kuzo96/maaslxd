@@ -19,8 +19,8 @@
 	def gitlabCredential = 'jenkin_gitlab'
 	
 	dockerBuildCommand = './'
-    //def version = "prod-0.${BUILD_NUMBER}"
-    def version = "1.3"
+    def version = "prod-0.${BUILD_NUMBER}"
+    // def version = "1.4"
 
 	pipeline {
 		agent any
@@ -45,24 +45,24 @@
 			  }
 			}
 
-			// stage('Build docker and push to registry') 
-			// {
-			//   steps 
-			//   {
-			// 	script {
-			// 			sh "chmod +x -R prebuildfs"
-			// 			sh "chmod +x -R rootfs"
-			// 			app = docker.build(DOCKER_IMAGE_NAME, dockerBuildCommand)
-			// 			docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
-			// 			   app.push(version)
-			// 			}
+			stage('Build docker and push to registry') 
+			{
+			  steps 
+			  {
+				script {
+						// sh "chmod +x -R prebuildfs"
+						// sh "chmod +x -R rootfs"
+						app = docker.build(DOCKER_IMAGE_NAME, dockerBuildCommand)
+						docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
+						   app.push(version)
+						}
 
-			// 			sh "docker rmi ${DOCKER_IMAGE_NAME} -f"
-			// 			sh "docker rmi ${DOCKER_IMAGE}:${version} -f"		
-			// 		//	sh "docker rmi ${DOCKER_IMAGE}:latest -f"				
-			// 		}
-			//   }
-			// }
+						sh "docker rmi ${DOCKER_IMAGE_NAME} -f"
+						sh "docker rmi ${DOCKER_IMAGE}:${version} -f"		
+					//	sh "docker rmi ${DOCKER_IMAGE}:latest -f"				
+					}
+			  }
+			}
 			stage('Deploy to k8s beta1') {
 				steps {
 					script {
