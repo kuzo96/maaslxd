@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: repo.cpt.gov.vn/staging/librenms-28-11
-  tag: "1.2"
+  repository: repo.cpt.gov.vn/staging/librenms-standalone
+  tag: ""
   pullPolicy: IfNotPresent
 # nginxService:
 #   name: nginx
