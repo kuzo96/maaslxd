@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
-FROM repo.cpt.gov.vn/staging/librenms-28-11:1.3
-COPY ./docker-php-entrypoint.sh /
+FROM repo.cpt.gov.vn/staging/librenms-28-11:1.4
+# COPY ./docker-php-entrypoint.sh /
 
 ENTRYPOINT ["/docker-php-entrypoint.sh"]
 
