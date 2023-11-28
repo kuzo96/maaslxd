@@ -63,7 +63,7 @@
 			// 		}
 			//   }
 			// }
-			stage('Deploy to k8s beta') {
+			stage('Deploy to k8s beta1') {
 				steps {
 					script {
 						echo "Deploy to k8s"
