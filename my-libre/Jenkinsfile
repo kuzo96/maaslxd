@@ -18,7 +18,7 @@
 	// gitlab credentials
 	def gitlabCredential = 'jenkin_gitlab'
 	
-	dockerBuildCommand = './'
+	dockerBuildCommand = '.'
     def version = "prod-0.${BUILD_NUMBER}"
     // def version = "1.4"
 
