@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
-  repository: repo.cpt.gov.vn/staging/libre-app
-  tag: "1.17"
+  repository: repo.cpt.gov.vn/staging/librenms-28-11
+  tag: "1.2"
   pullPolicy: IfNotPresent
 # nginxService:
 #   name: nginx

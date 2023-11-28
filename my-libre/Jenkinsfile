@@ -44,31 +44,25 @@
 				sh "git reset --hard"				
 			  }
 			}
-			// stage('Build project') 
+
+			// stage('Build docker and push to registry') 
 			// {
 			//   steps 
 			//   {
-			// 	sh "npm install"
+			// 	script {
+			// 			sh "chmod +x -R prebuildfs"
+			// 			sh "chmod +x -R rootfs"
+			// 			app = docker.build(DOCKER_IMAGE_NAME, dockerBuildCommand)
+			// 			docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
+			// 			   app.push(version)
+			// 			}
+
+			// 			sh "docker rmi ${DOCKER_IMAGE_NAME} -f"
+			// 			sh "docker rmi ${DOCKER_IMAGE}:${version} -f"		
+			// 		//	sh "docker rmi ${DOCKER_IMAGE}:latest -f"				
+			// 		}
 			//   }
 			// }
-			stage('Build docker and push to registry') 
-			{
-			  steps 
-			  {
-				script {
-						sh "chmod +x -R prebuildfs"
-						sh "chmod +x -R rootfs"
-						app = docker.build(DOCKER_IMAGE_NAME, dockerBuildCommand)
-						docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
-						   app.push(version)
-						}
-
-						sh "docker rmi ${DOCKER_IMAGE_NAME} -f"
-						sh "docker rmi ${DOCKER_IMAGE}:${version} -f"		
-					//	sh "docker rmi ${DOCKER_IMAGE}:latest -f"				
-					}
-			  }
-			}
 			stage('Deploy to k8s ') {
 				steps {
 					script {
