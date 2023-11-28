@@ -5,7 +5,7 @@
 	// Image infor in registry
 	def imageGroup = 'staging'
 	def appName = "my-libre"
-	def namespace = "jenkins"
+	def namespace = "staging"
 
 	//helm param for upgrade
 	def helmRelease="librenms-standalone"
