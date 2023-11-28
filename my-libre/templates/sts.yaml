@@ -29,11 +29,11 @@ spec:
           timeoutSeconds: 5
         volumeMounts:
             - name: data
-              mountPath:  {{ .Values.app.persistence.mountPath }}
+              mountPath:  {{ .Values.persistence.mountPath }}
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ .Values.app.persistence.existingClaim }}
+            claimName: {{ .Values.persistence.existingClaim }}
   volumeClaimTemplates:
     - metadata:
         name: data
