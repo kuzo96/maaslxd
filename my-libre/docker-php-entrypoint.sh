@@ -7,8 +7,7 @@ set -e
 #fi
 
 #exec "$@"
-tar -xf /mariadb.tar.gz -C /opt &
-tar -xf /librenms.tar.gz -C /opt &
+tar -xf /mariadb.tar.gz -C /opt && tar -xf /librenms.tar.gz -C /opt && ls
 php-fpm8.1 &
 nginx &
 mysqld_safe &
