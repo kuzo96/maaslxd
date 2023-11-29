@@ -5,7 +5,7 @@ replicaCount: 1
 image:
   repository: repo.cpt.gov.vn/staging/librenms-standalone
   tag: "latest"
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 phpService:
   name: web
