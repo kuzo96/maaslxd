@@ -22,8 +22,8 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ template "fullname" . }}-app
-              servicePort: {{ .Values.phpService.port }}
+              serviceName: {{ $serviceName }}
+              servicePort: http
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
