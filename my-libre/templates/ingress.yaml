@@ -35,7 +35,7 @@ spec:
               #   port:
               #     number: {{ .Values.phpService.port }}
               serviceName: {{ $serviceName }}
-              servicePort: {{ $servicePort }}
+              servicePort: {{ .Values.phpService.port }}
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
