@@ -47,3 +47,9 @@ Return the appropriate apiVersion for ingress.
 {{- end }}
 {{- end -}}
 
+{{/*
+Return  the proper Storage Class
+*/}}
+{{- define "librenms.storageClass" -}}
+{{- include "common.storage.class" (dict "persistence" .Values.persistence "global" .Values.global) -}}
+{{- end -}}
