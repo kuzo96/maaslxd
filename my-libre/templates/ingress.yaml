@@ -30,6 +30,11 @@ spec:
           - path: /
             pathType: Prefix
             backend:
+              service:
+                name: {{ $serviceName }}
+                port:
+                  name: http
+              {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: http
     {{- end -}}
