@@ -19,10 +19,10 @@ phpService:
   port:  80
   
 ingress:
-  enabled: false
+  enabled: true
   # Used to create Ingress record (should used with service.type: ClusterIP).
   hosts:
-    - libre.cpt.gov.vn
+    - librenms.cpt.gov.vn
   annotations:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
