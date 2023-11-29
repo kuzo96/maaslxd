@@ -33,7 +33,7 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  name: {{ $servicePort }}
+                  name: 80
               {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: {{ $servicePort }}
