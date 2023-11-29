@@ -32,8 +32,6 @@ spec:
             backend:
               service:
                 name: {{ $serviceName }}
-                port:
-                  name: 80
               {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: {{ $servicePort }}
