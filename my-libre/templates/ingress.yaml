@@ -30,12 +30,12 @@ spec:
           - path: /
             pathType: Prefix
             backend:
-              service:
-                name: {{ $serviceName }}
-                port:
-                  number: {{ .Values.phpService.port }}
+              # service:
+              #   name: {{ $serviceName }}
+              #   port:
+              #     number: {{ .Values.phpService.port }}
               serviceName: {{ $serviceName }}
-              servicePort: {{ .Values.phpService.port }}
+              servicePort: {{ $servicePort }}
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
