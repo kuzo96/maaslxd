@@ -15,7 +15,7 @@ metadata:
       {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
-  ingressClassName: {{ default "nginx" .Values.ingress.ingressClassName }}
+  ingressClassName: {{ default "nginx-ingress-controller" .Values.ingress.ingressClassName }}
   {{- if .Values.ingress.tls }}
   tls:
     - hosts:
