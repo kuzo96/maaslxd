@@ -6,20 +6,14 @@ image:
   repository: repo.cpt.gov.vn/staging/librenms-standalone
   tag: ""
   pullPolicy: IfNotPresent
-# nginxService:
-#   name: nginx
-#   type: ClusterIP
-#   # externalPort: 80
-#   # internalPort: 8080
-#   port:  80
+
 phpService:
   name: web
   type: ClusterIP
-  # phpPort: 9000
   port:  80
   
 ingress:
-  enabled: true
+  enabled: false
   # Used to create Ingress record (should used with service.type: ClusterIP).
   hosts:
     - librenms.cpt.gov.vn
