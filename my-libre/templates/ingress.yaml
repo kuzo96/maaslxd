@@ -39,6 +39,7 @@ spec:
               serviceName: {{ $serviceName }}
               servicePort: http
               {{- end -}}
+    {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
 {{ toYaml .Values.ingress.tls | indent 4 }}
