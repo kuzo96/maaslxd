@@ -30,15 +30,12 @@ spec:
           - path: /
             pathType: Prefix
             backend:
-              {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
               service:
                 name: {{ $serviceName }}
                 port:
-                  name: http
-              {{- else }}
+                  number: {{ .Values.phpService.port }}
               serviceName: {{ $serviceName }}
-              servicePort: http
-              {{- end -}}
+              servicePort: {{ .Values.phpService.port }}
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
