@@ -36,7 +36,7 @@ spec:
                   name: http
               {{- else }}
               serviceName: {{ $serviceName }}
-              servicePort: http
+              servicePort: {{ $servicePort }}
     {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
