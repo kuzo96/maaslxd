@@ -41,7 +41,7 @@ spec:
               service:
                 name: {{ $serviceName }}
                 port:
-                  number: 80
+                  number: {{ $servicePort }}
             {{- else if $.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" }}
             backend:
               serviceName: {{ $serviceName }}
