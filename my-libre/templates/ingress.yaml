@@ -32,6 +32,7 @@ spec:
             backend:
               service:
                 name: {{ $serviceName }}
+                port: {{ .Values.phpService.port }}
               {{- else }}
               serviceName: {{ $serviceName }}
               servicePort: {{ $servicePort }}
