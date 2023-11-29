@@ -9,7 +9,7 @@ image:
 
 phpService:
   name: web
-  type: NodePort
+  type: ClusterIP
   port:  80
   
 ingress:
