@@ -9,11 +9,11 @@ image:
 
 phpService:
   name: web
-  type: ClusterIP
+  type: NodePort
   port:  80
   
 ingress:
-  enabled: true
+  enabled: false
   # Used to create Ingress record (should used with service.type: ClusterIP).
   hosts:
     - librenms.cpt.gov.vn
