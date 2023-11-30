@@ -13,7 +13,7 @@ nginx &
 mysqld_safe &
 syslog-ng &
 cron -f /etc/cron.d/librenms &
-cd /opt/librenms &
+cd /opt/librenms
 env php artisan schedule:run --no-ansi --no-interaction &
 tail -f /dev/null
 
