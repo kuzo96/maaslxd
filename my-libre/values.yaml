@@ -12,7 +12,8 @@ phpService:
   type: ClusterIP
   port: 80
 
-nodeSelector: "cloud=openstack"
+nodeSelector: 
+  cloud: openstack
 
 ingress:
   enabled: true
