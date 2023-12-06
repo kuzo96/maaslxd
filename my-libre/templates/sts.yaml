@@ -14,8 +14,7 @@ spec:
       labels:
         app: {{ template "fullname" . }}
     spec:
-      nodeSelector:
-        juju.io/cloud: vsphere
+      nodeSelector: {{ .Values.node.label }}
       containers:
       - name: {{ template "fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

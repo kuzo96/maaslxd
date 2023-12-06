@@ -11,7 +11,10 @@ phpService:
   name: web
   type: ClusterIP
   port: 80
-  
+
+node:
+  label: juju.io/cloud=openstack
+
 ingress:
   enabled: true
   # Used to create Ingress record (should used with service.type: ClusterIP).
