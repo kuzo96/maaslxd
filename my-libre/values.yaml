@@ -13,7 +13,7 @@ phpService:
   port: 80
 
 node:
-  label: juju.io/cloud=openstack
+  label: "juju.io/cloud=openstack"
 
 ingress:
   enabled: true
