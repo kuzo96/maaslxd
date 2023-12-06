@@ -14,7 +14,7 @@ spec:
       labels:
         app: {{ template "fullname" . }}
     spec:
-      nodeSelector: {{ .Values.node.label }}
+      nodeSelector: {{ .Values.node.juju.io/cloud }}
       containers:
       - name: {{ template "fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
