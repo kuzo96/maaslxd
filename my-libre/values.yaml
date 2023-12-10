@@ -17,7 +17,7 @@ nodeSelector:
 
 ingress:
   enabled: true
-  # Used to createe Ingress record (should used with service.type: ClusterIP).
+  # Used to  createe Ingress record (should used with service.type: ClusterIP).
   hosts:
     - librenms.cpt.gov.vn
   annotations:
