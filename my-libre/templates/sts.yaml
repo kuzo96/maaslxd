@@ -54,7 +54,7 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.size | quote }}
-        storageClassName: {{ .Values.nodeSelector.cloud }}
+        storageClassName: {{ .Values.persistence.storageClass }}
         {{- if .Values.persistence.selector }}
         selector:
           {{- toYaml .Values.persistence.selector | nindent 10 }}
