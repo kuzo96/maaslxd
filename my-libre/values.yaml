@@ -13,7 +13,7 @@ phpService:
   port: 80
 
 nodeSelector: 
-  cloud: openstack
+  cloud: vsphere
 
 ingress:
   enabled: true
@@ -43,7 +43,7 @@ persistence:
   size: 10Gi
   existingClaim: ""
   mountPath: /opt/
-  storageClass: "cdk-cinder"
+  storageClass: "csi-vsphere"
   annotations: {}
   accessModes:
       #- ReadWriteMany
