@@ -14,6 +14,9 @@ spec:
       labels:
         app: {{ template "fullname" . }}
     spec:
+      {{- if .Values.nodeSelector }}
+      nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
+{{- end }}
       containers:
       - name: {{ template "fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -51,7 +54,7 @@ spec:
         resources:
           requests:
             storage: {{ .Values.persistence.size | quote }}
-        storageClass: {{ .Values.persistence.storageClass }}
+        storageClassName: {{ .Values.persistence.storageClass }}
         {{- if .Values.persistence.selector }}
         selector:
           {{- toYaml .Values.persistence.selector | nindent 10 }}

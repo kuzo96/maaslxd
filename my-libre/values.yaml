@@ -1,6 +1,6 @@
 # Default values for php-app.
 # This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# Declare variables to be passed into your template
 replicaCount: 1
 image:
   repository: repo.cpt.gov.vn/staging/librenms-standalone
@@ -11,10 +11,13 @@ phpService:
   name: web
   type: ClusterIP
   port: 80
-  
+
+nodeSelector: 
+  cloud: vsphere
+
 ingress:
   enabled: true
-  # Used to create Ingress record (should used with service.type: ClusterIP).
+  # Used to  createe Ingress record (should used with service.type: ClusterIP).
   hosts:
     - librenms.cpt.gov.vn
   annotations:
@@ -40,7 +43,7 @@ persistence:
   size: 10Gi
   existingClaim: ""
   mountPath: /opt/
-  storageClass: ""
+  storageClass: "csi-vsphere"
   annotations: {}
   accessModes:
       #- ReadWriteMany
