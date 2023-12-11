@@ -2,12 +2,12 @@
 	def gitRepository = 'http://172.10.0.5/root/charts.git'
 	def gitBranch = 'main'
 
-	// Image infor in registrys
+	// Image infor in registry
 	def imageGroup = 'staging'
 	def appName = "my-libre"
 	def namespace = "staging"
 
-	//helm param for upgradew
+	//helm param for upgrade
 	def helmRelease="librenms-standalone"
 	def helmValues = "/var/lib/jenkins/workspace/librenms/my-libre/values.yaml"
 	def helmChart = "/var/lib/jenkins/workspace/librenms/my-libre"
@@ -65,7 +65,7 @@
 			// 		}
 			//   }
 			// }
-			stage('Deploy to k8s beta1') {
+			stage('Deploy to k8s staging') {
 				steps {
 					script {
 						echo "Deploy to k8s"
