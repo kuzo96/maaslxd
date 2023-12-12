@@ -11,18 +11,66 @@ spec:
     targetPort: {{ .Values.phpService.port }}
     protocol: TCP
     name: {{ .Values.phpService.name }}
+  selector:
+    app: {{ template "fullname" . }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-redis
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.redis.type }}
+  ports:
   - port: {{ .Values.redis.port }}
     targetPort: {{ .Values.redis.port }}
     protocol: TCP
     name: {{ .Values.redis.name }}
+  selector:
+    app: {{ template "fullname" . }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-rrdcached
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.rrdcached.type }}
+  ports:
   - port: {{ .Values.rrdcached.port }}
     targetPort: {{ .Values.rrdcached.port }}
     protocol: TCP
     name: {{ .Values.rrdcached.name }}
+  selector:
+    app: {{ template "fullname" . }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-memcached
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.memcached.type }}
+  ports:
   - port: {{ .Values.memcached.port }}
     targetPort: {{ .Values.memcached.port }}
     protocol: TCP
     name: {{ .Values.memcached.name }}
+  selector:
+    app: {{ template "fullname" . }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "fullname" . }}-mariadb
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.mariadb.type }}
+  ports:
   - port: {{ .Values.mariadb.port }}
     targetPort: {{ .Values.mariadb.port }}
     protocol: TCP
