@@ -13,7 +13,7 @@ phpService:
   port: 80
 
 nodeSelector: 
-  cloud: vsphere
+  cloud: "vsphere"
 
 ingress:
   enabled: true
