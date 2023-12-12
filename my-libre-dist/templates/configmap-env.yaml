@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "fullname" . }}-env
+  labels:
+    {{- include "labels" . | nindent 4 }}
+data:
+  TZ: {{ .Values.timezone | default "Asia/Ho_Chi_Minh" }}
+  # PUID: {{ default 1000 .Values.app.podSecurityContext.fsGroup | quote }}
+  # PGID: {{ default 1000 .Values.app.podSecurityContext.runAsGroup | quote }}
+  DB_HOST: {{ include "name" . }}
+  DB_USER: {{ .Values.mysql.auth.username | default "librenms" }}
+  DB_NAME: {{ .Values.mysql.auth.database | default "librenms" }}
+  DB_PASSWORD: {{ .Values.mysql.auth.password | default "password" }}
+  
+  REDIS_HOST: {{ include "name" . }}
+  REDIS_PORT: "6379"
+  REDIS_DB: {{ default "0" .Values.redis.database | quote }}
+  REDIS_DB: "4"
+  REDIS_PASSWORD: "ktm2021"
+  CACHE_DRIVER: "redis"
+
+  MEMCACHED_HOST: {{ include "name" . }}
+  MEMCACHED_PORT: "11211"
+  RRDCACHED_SERVER: {{ include "name" . }}:42217

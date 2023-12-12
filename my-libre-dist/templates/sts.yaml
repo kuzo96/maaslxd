@@ -1,0 +1,61 @@
+apiVersion: {{ template "common.capabilities.deployment.apiVersion" . }}
+kind: StatefulSet
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      {{- if .Values.nodeSelector }}
+      nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
+{{- end }}
+      containers:
+      - name: {{ template "fullname" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.phpService.port }}
+        resources:
+{{ toYaml .Values.resources | indent 12 }}
+        readinessProbe:
+          tcpSocket:
+            port: {{ .Values.phpService.port }}
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        volumeMounts:
+            - name: data
+              mountPath:  {{ .Values.persistence.mountPath }}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        labels:
+          app: {{ template "fullname" . }}
+        {{- if .Values.persistence.annotations }}
+        annotations:
+          {{- toYaml .Values.persistence.annotations | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          {{- range .Values.persistence.accessModes }}
+          - {{ . | quote }}
+          {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.size | quote }}
+        storageClassName: {{ .Values.nodeSelector.cloud }}
+        {{- if .Values.persistence.selector }}
+        selector:
+          {{- toYaml .Values.persistence.selector | nindent 10 }}
+        {{- end }}
