@@ -69,14 +69,14 @@ spec:
             - sh
             - '-c'
             - >-
-                export | cut -d' ' -f2 | tr -d "'"  > /opt/librenms/.env
+                export | cut -d' ' -f2 | tr -d "'"  > /data/.env
           envFrom:
             {{- include "environment_ref_default" . | nindent 12 }}
           env:
             {{- include "dispatcher_env" . | nindent 12 }}
           volumeMounts:
-            - name: env
-              mountPath: /opt/librenms/.env
+            - name: data
+              mountPath: /data
       # {{- if .Values.nagios }}
       #   - name: nagios-plugins
       #     image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
@@ -139,16 +139,15 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 30       
           volumeMounts:
-            - name: env
-              mountPath: /opt/librenms/.env
-              subPath: .env
+            - name: data
+              mountPath: /data
       #       - name: nagios
       #         mountPath: /usr/lib/nagios
             - name: config
               mountPath: /opt/librenms/config.php
               subPath: config.php
       volumes:
-        - name: env
+        - name: data
           configMap:
             name: {{ include "fullname" . }}-env
       #   - name: nagios
