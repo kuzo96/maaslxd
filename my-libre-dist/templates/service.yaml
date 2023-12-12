@@ -13,6 +13,7 @@ spec:
     name: {{ .Values.phpService.name }}
   selector:
     app: {{ template "fullname" . }}
+
 ---
 apiVersion: v1
 kind: Service
@@ -29,6 +30,7 @@ spec:
     name: {{ .Values.redis.name }}
   selector:
     app: {{ template "fullname" . }}
+
 ---
 apiVersion: v1
 kind: Service
@@ -45,6 +47,7 @@ spec:
     name: {{ .Values.rrdcached.name }}
   selector:
     app: {{ template "fullname" . }}
+
 ---
 apiVersion: v1
 kind: Service
@@ -61,6 +64,7 @@ spec:
     name: {{ .Values.memcached.name }}
   selector:
     app: {{ template "fullname" . }}
+
 ---
 apiVersion: v1
 kind: Service
