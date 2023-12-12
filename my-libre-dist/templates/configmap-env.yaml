@@ -6,13 +6,13 @@ metadata:
     {{- include "labels" . | nindent 4 }}
 data:
   TZ: {{ .Values.timezone | default "Asia/Ho_Chi_Minh" }}
-  # PUID: {{ default 1000 .Values.app.podSecurityContext.fsGroup | quote }}
-  # PGID: {{ default 1000 .Values.app.podSecurityContext.runAsGroup | quote }}
+  PUID: {{ default 1000 .Values.podSecurityContext.fsGroup | quote }}
+  PGID: {{ default 1000 .Values.podSecurityContext.runAsGroup | quote }}
   DB_HOST: {{ include "name" . }}
   DB_USER: {{ .Values.mysql.auth.username | default "librenms" }}
   DB_NAME: {{ .Values.mysql.auth.database | default "librenms" }}
   DB_PASSWORD: {{ .Values.mysql.auth.password | default "password" }}
-  
+
   REDIS_HOST: {{ include "name" . }}
   REDIS_PORT: "6379"
   REDIS_DB: {{ default "0" .Values.redis.database | quote }}
