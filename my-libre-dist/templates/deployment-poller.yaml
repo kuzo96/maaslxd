@@ -69,14 +69,14 @@ spec:
             - sh
             - '-c'
             - >-
-                export | cut -d' ' -f2 | tr -d "'"  > /data/.env
+                export | cut -d' ' -f2 | tr -d "'"  > /opt/librenms/.env
           envFrom:
             {{- include "environment_ref_default" . | nindent 12 }}
           env:
             {{- include "dispatcher_env" . | nindent 12 }}
-          volumeMounts:
-            - name: data
-              mountPath: /data
+          # volumeMounts:
+          #   - name: data
+          #     mountPath: /opt/librenms
       # {{- if .Values.nagios }}
       #   - name: nagios-plugins
       #     image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
@@ -130,21 +130,21 @@ spec:
             periodSeconds: 10
             failureThreshold: 2
             timeoutSeconds: 5
-      #     volumeMounts:
+          volumeMounts:
       #       - name: data
       #         mountPath: /data
       #       - name: nagios
       #         mountPath: /usr/lib/nagios
-      #       - name: config
-      #         mountPath: /opt/librenms/config.php
-      #         subPath: config.php
-      # volumes:
+            - name: config
+              mountPath: /opt/librenms/config.php
+              subPath: config.php
+      volumes:
       #   - name: data
       #   - name: nagios
-      #   - name: config
-      #     configMap:
-      #       name: {{ include "fullname" . }}-config
-      # {{- with .Values.poller.nodeSelector }}
+        - name: config
+          configMap:
+            name: {{ include "fullname" . }}-config
+      {{- with .Values.poller.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
