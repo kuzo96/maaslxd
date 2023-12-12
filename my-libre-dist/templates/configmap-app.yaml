@@ -11,7 +11,6 @@ data:
     $config["base_url"] = '/';
     $config["rrdcached"] = '{{ include "fullname" . }}:42217';
     $config["distributed_poller"] = {{ gt (.Values.poller.replicaCount | int) 0 | ternary "true" "false" }};
-    $config["enable_syslog"] = {{ gt (.Values.syslog.replicaCount | int) 0 | ternary "true" "false" }};
    
     if (strpos(php_uname('n'), '-poller-') !== false) {
       $config["distributed_poller_name"] = php_uname('n');
