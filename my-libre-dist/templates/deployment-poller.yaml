@@ -70,6 +70,7 @@ spec:
             - '-c'
             - >-
                 export | cut -d' ' -f2 | tr -d "'"  > /data/.env
+                cp /data/.env /opt/librenms
           envFrom:
             {{- include "environment_ref_default" . | nindent 12 }}
           env:
