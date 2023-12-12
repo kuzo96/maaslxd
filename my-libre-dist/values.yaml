@@ -14,7 +14,7 @@ phpService:
 
 nodeSelector: 
   cloud: "openstack"
-
+key: null
 ingress:
   enabled: true
   # Used to  create Ingress record (should used with service.type: ClusterIP).
