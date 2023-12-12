@@ -69,7 +69,7 @@ spec:
             - sh
             - '-c'
             - >-
-                export | cut -d' ' -f2 | tr -d "'"  > /data
+                export | cut -d' ' -f2 | tr -d "'"  > /data/.env
           envFrom:
             {{- include "environment_ref_default" . | nindent 12 }}
           env:
