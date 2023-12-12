@@ -13,7 +13,6 @@ data:
 
   REDIS_HOST: {{ include "name" . }}
   REDIS_PORT: "6379"
-  REDIS_DB: {{ default "0" .Values.redis.database | quote }}
   REDIS_DB: "4"
   REDIS_PASSWORD: "ktm2021"
   CACHE_DRIVER: "redis"
