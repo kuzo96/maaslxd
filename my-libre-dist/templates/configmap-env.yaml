@@ -4,7 +4,7 @@ metadata:
   name: {{ include "fullname" . }}-env
   labels:
     {{- include "labels" . | nindent 4 }}
-data:
+env:
   TZ: {{ .Values.timezone | default "Asia/Ho_Chi_Minh" }}
   DB_HOST: {{ include "name" . }}-mariadb
   DB_USER: {{ .Values.mysql.auth.username | default "librenms" }}
