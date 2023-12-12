@@ -7,10 +7,10 @@ metadata:
 data:
   config.php: |
     <?php
-    $config['db_host'] = '{{ include "fullname" . }}-mariadb:42217';
+    $config['db_host'] = '{{ include "fullname" . }}-mariadb';
     $config['db_port'] = '3306';
-    $config['db_user'] = 'admin';
-    $config['db_pass'] = 'cpt@123';
+    $config['db_user'] = 'librenms';
+    $config['db_pass'] = 'librenms';
     $config['db_name'] = 'librenms';
     $config['db_socket'] = '';
     $config['own_hostname'] = '{{ include "fullname" . }}';
