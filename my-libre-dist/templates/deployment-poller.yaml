@@ -71,9 +71,9 @@ spec:
             - >-
                 export | cut -d' ' -f2 | tr -d "'"  > /data/.env
           envFrom:
-            {{- include "librenms.environment_ref_default" . | nindent 12 }}
+            {{- include "environment_ref_default" . | nindent 12 }}
           env:
-            {{- include "librenms.dispatcher_env" . | nindent 12 }}
+            {{- include "dispatcher_env" . | nindent 12 }}
           volumeMounts:
             - name: data
               mountPath: /data
