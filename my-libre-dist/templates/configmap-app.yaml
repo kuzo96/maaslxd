@@ -15,8 +15,6 @@ data:
     if (strpos(php_uname('n'), '-poller-') !== false) {
       $config["distributed_poller_name"] = php_uname('n');
       $config["distributed_poller_group"] = '0';
-      {{- if .Values.memcached.install }}
       $config["distributed_poller_memcached_host"] = '{{ include "fullname" . }}';
       $config["distributed_poller_memcached_port"] = 11211;
-      {{- end }}
 
