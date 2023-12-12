@@ -11,10 +11,8 @@ phpService:
   name: web
   type: ClusterIP
   port: 80
-redis:
-  name: redis
-  type: ClusterIP
-  port: 6379
+
+
 rrdcached:
   name: rrdcached
   type: ClusterIP
@@ -23,10 +21,7 @@ memcached:
   name: memcached
   type: ClusterIP
   port: 11211
-mariadb:
-  name: mariadb
-  type: ClusterIP
-  port: 3306
+
 
 nodeSelector: 
   cloud: "openstack"
@@ -88,6 +83,9 @@ timezone: &timezone Asia/Ho_Chi_Minh
 nagios: false
 
 mysql:
+  name: mariadb
+  type: ClusterIP
+  port: 3306
   # install: true
   # serviceAccount:
   #   create: false
@@ -96,6 +94,7 @@ mysql:
     username: librenms
     password: password
     rootPassword: librenms
+
   # volumePermissions:
   #   enabled: true
   # primary:
@@ -106,6 +105,9 @@ mysql:
   #     enabled: true
   #     size: 2Gi
 redis:
+  name: redis
+  type: ClusterIP
+  port: 6379
 #   install: true
 #   serviceAccount:
 #     create: false
@@ -117,6 +119,7 @@ redis:
 #   master:
 #     persistence:
 #       enabled: false
+
 
 poller:
   image:

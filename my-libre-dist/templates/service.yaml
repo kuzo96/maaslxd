@@ -73,11 +73,11 @@ metadata:
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
-  type: {{ .Values.mariadb.type }}
+  type: {{ .Values.mysql.type }}
   ports:
-  - port: {{ .Values.mariadb.port }}
-    targetPort: {{ .Values.mariadb.port }}
+  - port: {{ .Values.mysql.port }}
+    targetPort: {{ .Values.mysql.port }}
     protocol: TCP
-    name: {{ .Values.mariadb.name }}
+    name: {{ .Values.mysql.name }}
   selector:
     app: {{ template "fullname" . }}
