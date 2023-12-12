@@ -63,21 +63,20 @@ spec:
         #           echo waiting for librenms;
         #           sleep 2;
         #         done
-        # - name: init-env
-        #   image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
-        #   command:
-        #     - sh
-        #     - '-c'
-        #     - >-
-        #         export | cut -d' ' -f2 | tr -d "'"  > /opt/librenms/.env
-        #   envFrom:
-        #     {{- include "environment_ref_default" . | nindent 12 }}
-        #   env:
-        #     {{- include "dispatcher_env" . | nindent 12 }}
-        #   volumeMounts:
-        #     - name: env
-        #       mountPath: /data
-              # subPath: .env
+        - name: init-env
+          image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
+          command:
+            - sh
+            - '-c'
+            - >-
+                export | cut -d' ' -f2 | tr -d "'"  > /data
+          envFrom:
+            {{- include "environment_ref_default" . | nindent 12 }}
+          env:
+            {{- include "dispatcher_env" . | nindent 12 }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
       # {{- if .Values.nagios }}
       #   - name: nagios-plugins
       #     image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
