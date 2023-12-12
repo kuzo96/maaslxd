@@ -88,8 +88,8 @@ mysql:
   #   create: false
   auth:
     database: librenms
-    username: admin
-    password: "cpt@123"
+    username: librenms
+    password: librenms
     rootPassword: librenms
 
   # volumePermissions:
