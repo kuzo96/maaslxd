@@ -7,7 +7,7 @@
 	def appName = "my-libre-dist"
 	def namespace = "staging"
 
-	//helm param for upgrade
+	//helm param for upgrades
 	def helmRelease="librenms-standalone"
 	def helmValues = "/var/lib/jenkins/workspace/librenms/my-libre-dist/values.yaml"
 	def helmChart = "/var/lib/jenkins/workspace/librenms/my-libre-dist"
