@@ -59,7 +59,7 @@ spec:
             - sh
             - '-c'
             - >-
-                until nc -z {{ include "fullname" . }} {{ .Values.app.service.port }}; do
+                until nc -z {{ include "fullname" . }} {{ .Values.phpService.port }}; do
                   echo waiting for librenms;
                   sleep 2;
                 done
