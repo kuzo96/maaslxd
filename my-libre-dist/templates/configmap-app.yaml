@@ -7,6 +7,12 @@ metadata:
 data:
   config.php: |
     <?php
+    $config['db_host'] = '{{ include "fullname" . }}-mariadb:42217';
+    $config['db_port'] = '3306';
+    $config['db_user'] = 'admin';
+    $config['db_pass'] = 'cpt@123';
+    $config['db_name'] = 'librenms';
+    $config['db_socket'] = '';
     $config["own_hostname"] = '{{ include "fullname" . }}';
     $config["base_url"] = '/';
     $config["rrdcached"] = '{{ include "fullname" . }}-rrdcached:42217';
