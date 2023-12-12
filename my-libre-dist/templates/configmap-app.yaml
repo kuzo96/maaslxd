@@ -33,4 +33,4 @@ data:
     {{- if hasKey $.Values.config . }}
     $config["{{ . }}"] = {{ get $.Values.config . }};
     {{- end }}
-    
+    {{- end }}    
