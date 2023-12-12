@@ -89,6 +89,18 @@ mysql:
   #   persistence:
   #     enabled: true
   #     size: 2Gi
+redis:
+#   install: true
+#   serviceAccount:
+#     create: false
+#   architecture: standalone
+#   database: 0
+  auth:
+    enabled: true
+    password: "ktm2021"
+#   master:
+#     persistence:
+#       enabled: false
 
 poller:
   image:
@@ -163,17 +175,7 @@ poller:
 
 
 
-# redis:
-#   install: true
-#   serviceAccount:
-#     create: false
-#   architecture: standalone
-#   database: 0
-#   auth:
-#     enabled: false
-#   master:
-#     persistence:
-#       enabled: false
+
 
 # memcached:
 #   install: true
