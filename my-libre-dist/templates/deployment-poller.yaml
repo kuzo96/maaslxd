@@ -131,15 +131,15 @@ spec:
             failureThreshold: 2
             timeoutSeconds: 5
           volumeMounts:
-      #       - name: data
-      #         mountPath: /data
+            # - name: data
+            #   mountPath: /data
       #       - name: nagios
       #         mountPath: /usr/lib/nagios
             - name: config
               mountPath: /opt/librenms/config.php
               subPath: config.php
       volumes:
-      #   - name: data
+        - name: data
       #   - name: nagios
         - name: config
           configMap:
