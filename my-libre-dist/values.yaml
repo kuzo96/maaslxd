@@ -11,6 +11,22 @@ phpService:
   name: web
   type: ClusterIP
   port: 80
+redis:
+  name: redis
+  type: ClusterIP
+  port: 6379
+rrdcached:
+  name: rrdcached
+  type: ClusterIP
+  port: 42217
+memcached:
+  name: memcached
+  type: ClusterIP
+  port: 11211
+mariadb:
+  name: mariadb
+  type: ClusterIP
+  port: 3306
 
 nodeSelector: 
   cloud: "openstack"

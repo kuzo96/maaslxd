@@ -11,5 +11,21 @@ spec:
     targetPort: {{ .Values.phpService.port }}
     protocol: TCP
     name: {{ .Values.phpService.name }}
+  - port: {{ .Values.redis.port }}
+    targetPort: {{ .Values.redis.port }}
+    protocol: TCP
+    name: {{ .Values.redis.name }}
+  - port: {{ .Values.rrdcached.port }}
+    targetPort: {{ .Values.rrdcached.port }}
+    protocol: TCP
+    name: {{ .Values.rrdcached.name }}
+  - port: {{ .Values.memcached.port }}
+    targetPort: {{ .Values.memcached.port }}
+    protocol: TCP
+    name: {{ .Values.memcached.name }}
+  - port: {{ .Values.mariadb.port }}
+    targetPort: {{ .Values.mariadb.port }}
+    protocol: TCP
+    name: {{ .Values.mariadb.name }}
   selector:
     app: {{ template "fullname" . }}
