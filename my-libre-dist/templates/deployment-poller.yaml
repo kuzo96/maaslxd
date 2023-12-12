@@ -1,19 +1,19 @@
-# {{- define "dispatcher_env" }}
-# - name: SIDECAR_DISPATCHER
-#   value: "1"
-# - name: NODE_ID
-#   valueFrom:
-#     fieldRef:
-#       fieldPath: metadata.name
-# - name: DISPATCHER_NODE_ID
-#   valueFrom:
-#     fieldRef:
-#       fieldPath: metadata.name
-# - name: CACHE_DRIVER
-#   value: {{ default "redis" .Values.poller.cacheDriver | quote }}
-# - name: DISPATCHER_ARGS
-#   value: {{ .Values.poller.args | quote }}
-# {{- end }}
+{{- define "dispatcher_env" }}
+- name: SIDECAR_DISPATCHER
+  value: "1"
+- name: NODE_ID
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.name
+- name: DISPATCHER_NODE_ID
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.name
+- name: CACHE_DRIVER
+  value: {{ default "redis" .Values.poller.cacheDriver | quote }}
+- name: DISPATCHER_ARGS
+  value: {{ .Values.poller.args | quote }}
+{{- end }}
 
 apiVersion: apps/v1
 kind: Deployment
@@ -76,8 +76,8 @@ spec:
             {{- include "dispatcher_env" . | nindent 12 }}
           volumeMounts:
             - name: data
-              mountPath: /opt/librenms/.env
-              subPath: .env
+              mountPath: /data
+              # subPath: .env
       # {{- if .Values.nagios }}
       #   - name: nagios-plugins
       #     image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
