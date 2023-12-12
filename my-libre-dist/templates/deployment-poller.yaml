@@ -100,28 +100,28 @@ spec:
             {{- include "dispatcher_env" . | nindent 12 }}
           resources:
             {{- toYaml .Values.poller.resources | nindent 12 }}
-          lifecycle:
-            {{- if .Values.applyPatchPR }}
-            postStart:
-              exec:
-                command:
-                  - sh
-                  - '-c'
-                  - >-
-                      for PR_ID in {{ join " " .Values.applyPatchPR }}; do
-                        ./scripts/github-apply ${PR_ID};
-                      done
-            {{- end }}
-            preStop:
-              exec:
-                command:
-                  - sh
-                  - '-c'
-                  - >-
-                      mysql -h ${DB_HOST} -u ${DB_USER} --password=${DB_PASSWORD} ${DB_NAME} -e
-                      "DELETE FROM poller_cluster WHERE node_id = '${DISPATCHER_NODE_ID}';" ;
-                      s6-svscanctl -q /var/run/s6/services ;
-                      killall -9 s6-supervise
+          # lifecycle:
+          #   {{- if .Values.applyPatchPR }}
+          #   postStart:
+          #     exec:
+          #       command:
+          #         - sh
+          #         - '-c'
+          #         - >-
+          #             for PR_ID in {{ join " " .Values.applyPatchPR }}; do
+          #               ./scripts/github-apply ${PR_ID};
+          #             done
+          #   {{- end }}
+          #   preStop:
+          #     exec:
+          #       command:
+          #         - sh
+          #         - '-c'
+          #         - >-
+          #             mysql -h ${DB_HOST} -u ${DB_USER} --password=${DB_PASSWORD} ${DB_NAME} -e
+          #             "DELETE FROM poller_cluster WHERE node_id = '${DISPATCHER_NODE_ID}';" ;
+          #             s6-svscanctl -q /var/run/s6/services ;
+          #             killall -9 s6-supervise
           # livenessProbe:
           #   exec:
           #     command:

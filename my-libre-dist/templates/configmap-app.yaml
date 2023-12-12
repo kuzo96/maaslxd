@@ -11,10 +11,8 @@ data:
     $config["base_url"] = '/';
     $config["rrdcached"] = '{{ include "fullname" . }}:42217';
     $config["distributed_poller"] = {{ gt (.Values.poller.replicaCount | int) 0 | ternary "true" "false" }};
-   
-    if (strpos(php_uname('n'), '-poller-') !== false) {
-      $config["distributed_poller_name"] = php_uname('n');
-      $config["distributed_poller_group"] = '0';
-      $config["distributed_poller_memcached_host"] = '{{ include "fullname" . }}';
-      $config["distributed_poller_memcached_port"] = 11211;
+    $config["distributed_poller_name"] = php_uname('n');
+    $config["distributed_poller_group"] = '0';
+    $config["distributed_poller_memcached_host"] = '{{ include "fullname" . }}';
+    $config["distributed_poller_memcached_port"] = 11211;
 

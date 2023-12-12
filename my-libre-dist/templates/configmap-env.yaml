@@ -9,12 +9,10 @@ data:
   DB_HOST: {{ include "name" . }}
   DB_USER: {{ .Values.mysql.auth.username | default "librenms" }}
   DB_NAME: {{ .Values.mysql.auth.database | default "librenms" }}
-
   REDIS_HOST: {{ include "name" . }}
   REDIS_PORT: "6379"
   REDIS_DB: "4"
   CACHE_DRIVER: "redis"
-
   MEMCACHED_HOST: {{ include "name" . }}
   MEMCACHED_PORT: "11211"
   RRDCACHED_SERVER: {{ include "name" . }}:42217
