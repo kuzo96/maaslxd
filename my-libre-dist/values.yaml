@@ -13,7 +13,7 @@ phpService:
   port: 80
 
 nodeSelector: 
-  cloud: vsphere
+  cloud: openstack
 
 ingress:
   enabled: true
@@ -48,7 +48,12 @@ persistence:
   accessModes:
       #- ReadWriteMany
     - ReadWriteOnce
-
+    
+securityContext: &defaultSecurityContext
+  capabilities:
+    add:
+      - NET_ADMIN
+      - NET_RAW
 timezone: &timezone Asia/Ho_Chi_Minh
 # -- Download Nagios check scripts before launching application.
 nagios: false
