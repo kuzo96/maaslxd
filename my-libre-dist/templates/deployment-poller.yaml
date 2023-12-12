@@ -122,14 +122,19 @@ spec:
                       "DELETE FROM poller_cluster WHERE node_id = '${DISPATCHER_NODE_ID}';" ;
                       s6-svscanctl -q /var/run/s6/services ;
                       killall -9 s6-supervise
-          livenessProbe:
-            exec:
-              command:
-                - pgrep
-                - python3
-            periodSeconds: 10
-            failureThreshold: 2
-            timeoutSeconds: 5
+          # livenessProbe:
+          #   exec:
+          #     command:
+          #       - pgrep
+          #       - python3
+          #   periodSeconds: 10
+          #   failureThreshold: 2
+          #   timeoutSeconds: 5
+          readinessProbe:
+            tcpSocket:
+              port: {{ include "fullname" . }}:80
+            initialDelaySeconds: 10
+            timeoutSeconds: 5          
           volumeMounts:
             # - name: data
             #   mountPath: /data
