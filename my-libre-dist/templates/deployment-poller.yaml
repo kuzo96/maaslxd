@@ -63,20 +63,20 @@ spec:
         #           echo waiting for librenms;
         #           sleep 2;
         #         done
-        - name: init-env
-          image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
-          command:
-            - sh
-            - '-c'
-            - >-
-                export | cut -d' ' -f2 | tr -d "'"  > /opt/librenms/.env
-          envFrom:
-            {{- include "environment_ref_default" . | nindent 12 }}
-          env:
-            {{- include "dispatcher_env" . | nindent 12 }}
-          volumeMounts:
-            - name: data
-              mountPath: /data
+        # - name: init-env
+        #   image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
+        #   command:
+        #     - sh
+        #     - '-c'
+        #     - >-
+        #         export | cut -d' ' -f2 | tr -d "'"  > /opt/librenms/.env
+        #   envFrom:
+        #     {{- include "environment_ref_default" . | nindent 12 }}
+        #   env:
+        #     {{- include "dispatcher_env" . | nindent 12 }}
+        #   volumeMounts:
+        #     - name: env
+        #       mountPath: /data
               # subPath: .env
       # {{- if .Values.nagios }}
       #   - name: nagios-plugins
@@ -140,15 +140,18 @@ spec:
             initialDelaySeconds: 15
             periodSeconds: 30       
           volumeMounts:
-            # - name: data
-            #   mountPath: /data
+            - name: env
+              mountPath: /opt/librenms/.env
+              subPath: .env
       #       - name: nagios
       #         mountPath: /usr/lib/nagios
             - name: config
               mountPath: /opt/librenms/config.php
               subPath: config.php
       volumes:
-        - name: data
+        - name: env
+          configMap:
+            name: {{ include "fullname" . }}-env
       #   - name: nagios
         - name: config
           configMap:
