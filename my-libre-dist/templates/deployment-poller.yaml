@@ -144,11 +144,11 @@ spec:
         - name: config
           configMap:
             name: {{ include "fullname" . }}-config
-      {{- with .Values.poller.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.poller.affinity }}
+      # {{- with .Values.poller.nodeSelector }}
+      nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
+      #   {{- toYaml . | nindent 8 }}
+      # {{- end }}
+      # {{- with .Values.poller.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
