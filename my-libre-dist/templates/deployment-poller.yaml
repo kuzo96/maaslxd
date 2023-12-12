@@ -130,11 +130,14 @@ spec:
           #   periodSeconds: 10
           #   failureThreshold: 2
           #   timeoutSeconds: 5
-          readinessProbe:
-            tcpSocket:
-              port: {{ include "fullname" . }}:80
-            initialDelaySeconds: 10
-            timeoutSeconds: 5          
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - "curl --fail http://{{ include "fullname" . }}:80/ || exit 1"
+            initialDelaySeconds: 15
+            periodSeconds: 30       
           volumeMounts:
             # - name: data
             #   mountPath: /data
