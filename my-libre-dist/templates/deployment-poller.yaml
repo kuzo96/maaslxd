@@ -36,6 +36,7 @@ spec:
       labels:
         {{- include "poller.labels" . | nindent 8 }}
     spec:
+      nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
       {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
       topologySpreadConstraints:
         - maxSkew: 1
@@ -145,7 +146,7 @@ spec:
           configMap:
             name: {{ include "fullname" . }}-config
       # {{- with .Values.nodeSelector }}
-      nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
+      # nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
       #   {{- toYaml . | nindent 8 }}
       # {{- end }}
       # {{- with .Values.poller.affinity }}
