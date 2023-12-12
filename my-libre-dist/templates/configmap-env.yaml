@@ -6,8 +6,6 @@ metadata:
     {{- include "labels" . | nindent 4 }}
 data:
   TZ: {{ .Values.timezone | default "Asia/Ho_Chi_Minh" }}
-  PUID: {{ default 1000 .Values.podSecurityContext.fsGroup | quote }}
-  PGID: {{ default 1000 .Values.podSecurityContext.runAsGroup | quote }}
   DB_HOST: {{ include "name" . }}
   DB_USER: {{ .Values.mysql.auth.username | default "librenms" }}
   DB_NAME: {{ .Values.mysql.auth.database | default "librenms" }}
