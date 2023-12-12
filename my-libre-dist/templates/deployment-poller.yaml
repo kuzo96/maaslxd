@@ -70,7 +70,6 @@ spec:
             - '-c'
             - >-
                 export | cut -d' ' -f2 | tr -d "'"  > /data/.env
-                cp /data/.env /opt/librenms
           envFrom:
             {{- include "environment_ref_default" . | nindent 12 }}
           env:
@@ -94,6 +93,7 @@ spec:
           securityContext:
             {{- toYaml .Values.poller.securityContext | nindent 12 }}
           image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
+          command: cp /data/.env /opt/librenms
           imagePullPolicy: {{ .Values.poller.image.pullPolicy }}
           envFrom:
             {{- include "environment_ref_default" . | nindent 12 }}
