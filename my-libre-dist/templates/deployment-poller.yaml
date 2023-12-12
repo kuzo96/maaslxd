@@ -74,9 +74,9 @@ spec:
             {{- include "environment_ref_default" . | nindent 12 }}
           env:
             {{- include "dispatcher_env" . | nindent 12 }}
-          # volumeMounts:
-          #   - name: data
-          #     mountPath: /opt/librenms
+          volumeMounts:
+            - name: data
+              mountPath: /data
       # {{- if .Values.nagios }}
       #   - name: nagios-plugins
       #     image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
