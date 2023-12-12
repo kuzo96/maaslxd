@@ -69,14 +69,14 @@ spec:
             - sh
             - '-c'
             - >-
-                export | cut -d' ' -f2 | tr -d "'"  > /data/.env
+                export | cut -d' ' -f2 | tr -d "'"  > /opt/librenms/.env
           envFrom:
             {{- include "environment_ref_default" . | nindent 12 }}
           env:
             {{- include "dispatcher_env" . | nindent 12 }}
           volumeMounts:
-            - name: data
-              mountPath: /data
+            - name: env
+              mountPath: /opt/librenms/.env
       # {{- if .Values.nagios }}
       #   - name: nagios-plugins
       #     image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
