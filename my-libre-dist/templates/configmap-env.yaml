@@ -4,15 +4,16 @@ metadata:
   name: {{ include "fullname" . }}-env
   labels:
     {{- include "labels" . | nindent 4 }}
-env:
-  TZ: {{ .Values.timezone | default "Asia/Ho_Chi_Minh" }}
-  DB_HOST: {{ include "name" . }}-mariadb
-  DB_USER: {{ .Values.mysql.auth.username | default "librenms" }}
-  DB_NAME: {{ .Values.mysql.auth.database | default "librenms" }}
-  REDIS_HOST: {{ include "name" . }}-redis
-  REDIS_PORT: "6379"
-  REDIS_DB: "4"
-  CACHE_DRIVER: "redis"
-  MEMCACHED_HOST: {{ include "name" . }}-memcached
-  MEMCACHED_PORT: "11211"
-  RRDCACHED_SERVER: {{ include "name" . }}-memcached:42217
+data:
+  .env: |
+    TZ: {{ .Values.timezone | default "Asia/Ho_Chi_Minh" }}
+    DB_HOST: {{ include "name" . }}-mariadb
+    DB_USER: {{ .Values.mysql.auth.username | default "librenms" }}
+    DB_NAME: {{ .Values.mysql.auth.database | default "librenms" }}
+    REDIS_HOST: {{ include "name" . }}-redis
+    REDIS_PORT: "6379"
+    REDIS_DB: "4"
+    CACHE_DRIVER: "redis"
+    MEMCACHED_HOST: {{ include "name" . }}-memcached
+    MEMCACHED_PORT: "11211"
+    RRDCACHED_SERVER: {{ include "name" . }}-memcached:42217
