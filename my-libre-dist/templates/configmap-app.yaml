@@ -9,10 +9,10 @@ data:
     <?php
     $config["own_hostname"] = '{{ include "fullname" . }}';
     $config["base_url"] = '/';
-    $config["rrdcached"] = '{{ include "fullname" . }}:42217';
+    $config["rrdcached"] = '{{ include "fullname" . }}-rrdcached:42217';
     $config["distributed_poller"] = {{ gt (.Values.poller.replicaCount | int) 0 | ternary "true" "false" }};
     $config["distributed_poller_name"] = php_uname('n');
     $config["distributed_poller_group"] = '0';
-    $config["distributed_poller_memcached_host"] = '{{ include "fullname" . }}';
+    $config["distributed_poller_memcached_host"] = '{{ include "fullname" . }}-memcached';
     $config["distributed_poller_memcached_port"] = 11211;
 
