@@ -97,7 +97,8 @@ poller:
     pullPolicy: Always
   replicaCount: 1
   cacheDriver: {}
-  nodeSelector: {}
+  nodeSelector:
+    cloud: "openstack"
   tolerations: []
   affinity: {}
   podAnnotations: {}
