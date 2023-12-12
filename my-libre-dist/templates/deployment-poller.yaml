@@ -53,16 +53,16 @@ spec:
       securityContext:
         {{- toYaml .Values.poller.podSecurityContext | nindent 8 }}
       initContainers:
-        - name: wait-app
-          image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
-          command:
-            - sh
-            - '-c'
-            - >-
-                until nc -z {{ include "fullname" . }} {{ .Values.phpService.port }}; do
-                  echo waiting for librenms;
-                  sleep 2;
-                done
+        # - name: wait-app
+        #   image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
+        #   command:
+        #     - sh
+        #     - '-c'
+        #     - >-
+        #         until nc -z {{ include "fullname" . }} {{ .Values.phpService.port }}; do
+        #           echo waiting for librenms;
+        #           sleep 2;
+        #         done
         - name: init-env
           image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"
           command:
