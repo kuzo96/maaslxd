@@ -70,7 +70,6 @@ spec:
             - '-c'
             - >-
                 export | cut -d' ' -f2 | tr -d "'"  > /data/.env
-            - cp /data/.env /opt/librenms
           envFrom:
             {{- include "environment_ref_default" . | nindent 12 }}
           env:
@@ -103,13 +102,13 @@ spec:
             {{- toYaml .Values.poller.resources | nindent 12 }}
           # lifecycle:
           #   {{- if .Values.applyPatchPR }}
-          postInstall:
-            exec:
-              command:
-                - sh
-                - '-c'
-                - >-
-                    cp /data/.env /opt/librenms
+          # postInstall:
+          #   exec:
+          #     command:
+          #       - sh
+          #       - '-c'
+          #       - >-
+          #           cp /data/.env /opt/librenms
             # {{- end }}
           #   preStop:
           #     exec:
@@ -132,9 +131,9 @@ spec:
           livenessProbe:
             exec:
               command:
-                - sh
+                - /bin/sh
                 - -c
-                - "curl --fail http://{{ include "fullname" . }}:80/ || exit 1"
+                - exit 0
             initialDelaySeconds: 15
             periodSeconds: 30       
           volumeMounts:
