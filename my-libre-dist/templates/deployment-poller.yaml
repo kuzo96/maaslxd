@@ -101,18 +101,15 @@ spec:
             {{- include "dispatcher_env" . | nindent 12 }}
           resources:
             {{- toYaml .Values.poller.resources | nindent 12 }}
-          lifecycle:
-            # {{- if .Values.applyPatchPR }}
-            postStart:
-              exec:
-                command:
-                  - cp /data/.env /opt/librenms
-                  # - sh
-                  # - '-c'
-                  # - >-
-                  #     for PR_ID in {{ join " " .Values.applyPatchPR }}; do
-                  #       ./scripts/github-apply ${PR_ID};
-                  #     done
+          # lifecycle:
+          #   {{- if .Values.applyPatchPR }}
+          postInstall:
+            exec:
+              command:
+                - sh
+                - '-c'
+                - >-
+                    cp /data/.env /opt/librenms
             # {{- end }}
           #   preStop:
           #     exec:
