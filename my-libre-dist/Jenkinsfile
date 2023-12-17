@@ -77,7 +77,7 @@
 							echo "Namespace $NAMESPACE already exists."
 						else
 							# Create the namespace
-							kubectl create namespace "$NAMESPACE"
+							kubectl create --kubeconfig=$k8sEnv namespace "$NAMESPACE"
 							echo "Namespace $NAMESPACE created."
 						fi
 						helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version
