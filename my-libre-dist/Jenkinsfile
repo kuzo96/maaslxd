@@ -5,7 +5,7 @@
 	// Image infor in registry
 	def imageGroup = 'staging'
 	def appName = "my-libre-dist"
-	def namespace = "staging"
+	def namespace = "staging1"
 
 	//helm param for upgrades
 	def helmRelease="librenms-dist"
@@ -69,6 +69,18 @@
 				steps {
 					script {
 						echo "Deploy to k8s"
+						sh '''
+						NAMESPACE="$namespace"  # Replace with your desired namespace name
+
+						# Check if the namespace exists
+						if kubectl get namespace "$NAMESPACE" &> /dev/null; then
+							echo "Namespace $NAMESPACE already exists."
+						else
+							# Create the namespace
+							kubectl create namespace "$NAMESPACE"
+							echo "Namespace $NAMESPACE created."
+						fi
+						'''
 						// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
 						sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
 				}
