@@ -5,7 +5,7 @@
 	// Image infor in registry
 	def imageGroup = 'staging'
 	def appName = "my-libre-dist"
-	def namespace = "staging1"
+	def namespace = "staging"
 
 	//helm param for upgrades
 	def helmRelease="librenms-dist"
