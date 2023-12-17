@@ -83,12 +83,19 @@
 			}
 			post {
 			always {
-				echo "Deploy to k8s"
-				// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
-				sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"		
-				}
+				script {
+						echo "Deploy to k8s"
+						// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
+						sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
 			}
-			
-
-		}
+		// 	stage('Deploy to Kubernetes Cluster') {
+		// 		steps {
+		// 			script {
+		// 				echo "Deploy to k8s"
+		// 				// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
+		// 				sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
+		// 		}
+		// 	}
+		// }
+	}
 	}
