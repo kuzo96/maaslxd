@@ -80,9 +80,10 @@
 							kubectl create namespace "$NAMESPACE"
 							echo "Namespace $NAMESPACE created."
 						fi
+						helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version
 						'''
 						// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
-						sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
+						// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
 				}
 			}
 		}
