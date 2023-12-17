@@ -5,7 +5,7 @@
 	// Image infor in registry
 	def imageGroup = 'staging'
 	def appName = "my-libre-dist"
-	def namespace = "staging"
+	def namespace = "staging1"
 
 	//helm param for upgrades
 	def helmRelease="librenms-dist"
@@ -68,37 +68,32 @@
 			stage('Precheck Kubernetes Cluster') {
 				steps {
 					script {
-						def namespaceExists = sh(
-							script: "kubectl get namespace $namespace",
-							returnStatus: true
-						)
-						if (namespaceExists != 0) {
-							echo "Namespace $namespace does not exist. Creating..."
-							sh "kubectl --kubeconfig=$k8sEnv create namespace $namespace"
-						} else {
-							echo "Namespace $namespace already exists."
+						try {
+							def namespaceExists = sh(
+								script: "kubectl get namespace $namespace",
+								returnStatus: true
+							)
+							if (namespaceExists != 0) {
+								echo "Namespace $namespace does not exist. Creating..."
+								sh "kubectl create namespace $namespace"
+							} else {
+								echo "Namespace $namespace already exists."
+							}
+						} catch (Exception e) {
+							echo "Stage failed but ignoring the failure."
 						}
 					}
 				}
 			}
-			post {
-			always {
-				script {
+			stage('Deploy to Kubernetes Cluster') {
+				steps {
+					script {
 						echo "Deploy to k8s"
 						// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
 						sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
+				}
 			}
-		// 	stage('Deploy to Kubernetes Cluster') {
-		// 		steps {
-		// 			script {
-		// 				echo "Deploy to k8s"
-		// 				// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
-		// 				sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
-		// 		}
-		// 	}
-		// }
-	}
-	}
+		}
 	}
 	}
 	
