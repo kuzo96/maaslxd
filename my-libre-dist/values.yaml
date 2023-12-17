@@ -22,7 +22,7 @@ memcached:
   port: 11211
 
 nodeSelector: 
-  cloud: "openstack"
+  cloud: "vsphere"
 key: null
 ingress:
   enabled: true
