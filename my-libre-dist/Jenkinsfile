@@ -65,20 +65,26 @@
 			// 		}
 			//   }
 			// }
-			stage('Deploy to k8s staging') {
+			stage('Precheck Kubernetes Cluster') {
+				steps {
+					script {
+						def namespaceExists = sh(
+							script: "kubectl get namespace $namespace",
+							returnStatus: true
+						)
+						if (namespaceExists != 0) {
+							echo "Namespace $namespace does not exist. Creating..."
+							sh "kubectl --kubeconfig=$k8sEnv create namespace $namespace"
+						} else {
+							echo "Namespace $namespace already exists."
+						}
+					}
+				}
+			}
+			stage('Deploy to Kubernetes Cluster') {
 				steps {
 					script {
 						echo "Deploy to k8s"
-						sh '''
-						# Check if the namespace exists
-						if kubectl get namespace "$namespace" &> /dev/null; then
-							echo "Namespace $namespace already exists."
-						else
-							# Create the namespace
-							kubectl create --kubeconfig=$k8sEnv namespace "$namespace"
-							echo "Namespace $namespace created."
-						fi
-						'''
 						// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
 						sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
 				}
