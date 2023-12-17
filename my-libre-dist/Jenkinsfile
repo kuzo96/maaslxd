@@ -70,7 +70,7 @@
 					script {
 						try {
 							def namespaceExists = sh(
-								script: "kubectl get namespace $namespace",
+								script: "kubectl --kubeconfig=$k8sEnv get namespace $namespace",
 								returnStatus: true
 							)
 							if (namespaceExists != 0) {
