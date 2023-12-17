@@ -75,7 +75,7 @@
 							)
 							if (namespaceExists != 0) {
 								echo "Namespace $namespace does not exist. Creating..."
-								sh "kubectl create namespace $namespace"
+								sh "kubectl --kubeconfig=$k8sEnv create namespace $namespace"
 							} else {
 								echo "Namespace $namespace already exists."
 							}
