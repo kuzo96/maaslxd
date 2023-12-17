@@ -70,20 +70,17 @@
 					script {
 						echo "Deploy to k8s"
 						sh '''
-						NAMESPACE="$namespace"  # Replace with your desired namespace name
-
 						# Check if the namespace exists
-						if kubectl get namespace "$NAMESPACE" &> /dev/null; then
-							echo "Namespace $NAMESPACE already exists."
+						if kubectl get namespace "$namespace" &> /dev/null; then
+							echo "Namespace $namespace already exists."
 						else
 							# Create the namespace
-							kubectl create --kubeconfig=$k8sEnv namespace "$NAMESPACE"
-							echo "Namespace $NAMESPACE created."
+							kubectl create --kubeconfig=$k8sEnv namespace "$namespace"
+							echo "Namespace $namespace created."
 						fi
-						helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version
 						'''
 						// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv delete $appName || true"
-						// sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
+						sh "helm --namespace=$namespace --kubeconfig=$k8sEnv upgrade --install $helmRelease -f $helmValues $helmChart  --set=image.tag=$version"
 				}
 			}
 		}
