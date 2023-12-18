@@ -20,7 +20,7 @@ ingress:
 
 hpa:
   enabled: true
-  minReplicas: 2
+  minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 50
 
@@ -134,7 +134,10 @@ poller:
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: *defaultSecurityContext
-  resources: {}
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 1Gi
   # -- arguments to pass to librenms-service.py.
   # Valid: -t -d -v -g
   args: ""
