@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     name: {{ .Values.phpService.name }}
   selector:
-    app: {{ template "fullname" . }}
+    app: {{ template "fullname" . }}-main
 
 ---
 apiVersion: v1
@@ -29,7 +29,7 @@ spec:
     protocol: TCP
     name: {{ .Values.redis.name }}
   selector:
-    app: {{ template "fullname" . }}
+    app: {{ template "fullname" . }}-main
 
 ---
 apiVersion: v1
@@ -46,7 +46,7 @@ spec:
     protocol: TCP
     name: {{ .Values.rrdcached.name }}
   selector:
-    app: {{ template "fullname" . }}
+    app: {{ template "fullname" . }}-main
 
 ---
 apiVersion: v1
@@ -63,7 +63,7 @@ spec:
     protocol: TCP
     name: {{ .Values.memcached.name }}
   selector:
-    app: {{ template "fullname" . }}
+    app: {{ template "fullname" . }}-main
 
 ---
 apiVersion: v1
@@ -80,4 +80,4 @@ spec:
     protocol: TCP
     name: {{ .Values.mysql.name }}
   selector:
-    app: {{ template "fullname" . }}
+    app: {{ template "fullname" . }}-main

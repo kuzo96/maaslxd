@@ -1,24 +1,24 @@
 apiVersion: {{ template "common.capabilities.deployment.apiVersion" . }}
 kind: StatefulSet
 metadata:
-  name: {{ template "fullname" . }}
+  name: {{ template "fullname" . }}-main
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "fullname" . }}
+      app: {{ template "fullname" . }}-main
   template:
     metadata:
       labels:
-        app: {{ template "fullname" . }}
+        app: {{ template "fullname" . }}-main
     spec:
       {{- if .Values.nodeSelector }}
       nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
 {{- end }}
       containers:
-      - name: {{ template "fullname" . }}
+      - name: {{ template "fullname" . }}-main
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
@@ -41,7 +41,7 @@ spec:
     - metadata:
         name: data
         labels:
-          app: {{ template "fullname" . }}
+          app: {{ template "fullname" . }}-main
         {{- if .Values.persistence.annotations }}
         annotations:
           {{- toYaml .Values.persistence.annotations | nindent 10 }}
