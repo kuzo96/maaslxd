@@ -150,10 +150,10 @@ spec:
         - name: config
           configMap:
             name: {{ include "fullname" . }}-config
-      # {{- with .Values.nodeSelector }}
-      # nodeSelector:
-      #   {{- toYaml . | nindent 8 }}
-      # {{- end }}
+      {{- with .Values.poller.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.poller.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
