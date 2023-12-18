@@ -2,9 +2,9 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "fullname" . }}
+  name: {{ include "fullname" . }}-poller
   labels:
-    app: {{ template "fullname" . }}
+    app: {{ template "fullname" . }}-poller
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
