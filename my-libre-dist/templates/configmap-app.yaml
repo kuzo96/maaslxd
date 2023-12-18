@@ -7,13 +7,6 @@ metadata:
 data:
   config.php: |
     <?php
-    $config['db_host'] = '{{ include "fullname" . }}-mariadb';
-    $config['db_port'] = '3306';
-    $config['db_user'] = 'librenms';
-    $config['db_pass'] = 'librenms';
-    $config['db_name'] = 'librenms';
-    $config['db_socket'] = '';
-    $config['own_hostname'] = '{{ include "fullname" . }}';
     $config['base_url'] = '/';
     $config['rrdcached'] = '{{ include "fullname" . }}-rrdcached:42217';
     $config['distributed_poller'] = {{ gt (.Values.poller.replicaCount | int) 0 | ternary "true" "false" }};
