@@ -21,7 +21,7 @@ ingress:
 hpa:
   enabled: true
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 500
   targetCPUUtilizationPercentage: 50
 
 phpService:
