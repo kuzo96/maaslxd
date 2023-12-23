@@ -46,7 +46,7 @@ spec:
           nodeTaintsPolicy: Honor 
           labelSelector:
             matchLabels:
-              {{- include "poller.selectorLabels" . | nindent 14 }}
+              app: {{ template "fullname" . }}-poller
       {{- end }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
