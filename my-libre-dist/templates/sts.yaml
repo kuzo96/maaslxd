@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: {{ template "fullname" . }}-main
+        version: {{ .Chart.AppVersion | quote }}
     spec:
       {{- if .Values.nodeSelector }}
       nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
