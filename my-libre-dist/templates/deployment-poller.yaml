@@ -26,7 +26,7 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: {{ template "fullname" . }}-poller
+      {{- include "poller.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.poller.podAnnotations }}
@@ -34,8 +34,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app: {{ template "fullname" . }}-poller
-        version: {{ .Chart.AppVersion | quote }}
+        {{- include "poller.labels" . | nindent 8 }}
     spec:
       {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
       topologySpreadConstraints:
@@ -46,7 +45,7 @@ spec:
           nodeTaintsPolicy: Honor 
           labelSelector:
             matchLabels:
-              app: {{ template "fullname" . }}-poller
+              {{- include "poller.selectorLabels" . | nindent 14 }}
       {{- end }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
