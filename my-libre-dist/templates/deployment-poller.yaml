@@ -26,7 +26,7 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      {{- include "poller.selectorLabels" . | nindent 6 }}-poller
+      app: {{ template "fullname" . }}-poller
   template:
     metadata:
       {{- with .Values.poller.podAnnotations }}
@@ -34,7 +34,8 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "poller.labels" . | nindent 8 }}-poller
+        app: {{ template "fullname" . }}-main
+        version: {{ .Chart.AppVersion | quote }}
     spec:
       {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
       topologySpreadConstraints:
