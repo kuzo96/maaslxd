@@ -66,9 +66,9 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "base.labels" -}}
-helm.sh/chart: {{ include "chart" . }}
+app: {{ include "chart" . }}
 {{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
