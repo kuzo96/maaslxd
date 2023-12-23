@@ -39,12 +39,12 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ $serviceName }}-web
+                name: {{ $serviceName }}-http
                 port:
                   number: {{ $servicePort }}
             {{- else if $.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1" }}
             backend:
-              serviceName: {{ $serviceName }}-web
+              serviceName: {{ $serviceName }}-http
               servicePort: {{ $servicePort }}
             {{- end }}
     {{- end -}}

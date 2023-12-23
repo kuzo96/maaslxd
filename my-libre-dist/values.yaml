@@ -25,16 +25,16 @@ hpa:
   targetCPUUtilizationPercentage: 50
 
 phpService:
-  name: web
+  name: http
   type: ClusterIP
   port: 80
 
 rrdcached:
-  name: rrdcached
+  name: tcp-rrdcached
   type: ClusterIP
   port: 42217
 memcached:
-  name: memcached
+  name: tcp-memcached
   type: ClusterIP
   port: 11211
 
@@ -82,7 +82,7 @@ timezone: &timezone Asia/Ho_Chi_Minh
 nagios: false
 
 mysql:
-  name: mariadb
+  name: mysql
   type: ClusterIP
   port: 3306
   # install: true
