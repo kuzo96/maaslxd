@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "poller.labels" . | nindent 8 }}
+        {{- include "labels" . | nindent 8 }}
     spec:
       {{- if .Values.nodeSelector }}
       nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
