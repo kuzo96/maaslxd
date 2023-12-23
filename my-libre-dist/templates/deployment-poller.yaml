@@ -34,7 +34,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app: {{ template "fullname" . }}-main
+        app: {{ template "fullname" . }}-poller
         version: {{ .Chart.AppVersion | quote }}
     spec:
       {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
