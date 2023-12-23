@@ -12,7 +12,8 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "labels" . | nindent 8 }}
+        app: {{ template "fullname" . }}-main
+        {{- include "poller.labels" . | nindent 8 }}
     spec:
       {{- if .Values.nodeSelector }}
       nodeSelector: {{- .Values.nodeSelector | toYaml | nindent 8 }}
