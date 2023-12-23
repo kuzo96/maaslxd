@@ -20,7 +20,7 @@ kind: Deployment
 metadata:
   name: {{ include "fullname" . }}-poller
   labels:
-    {{- include "poller.labels" . | nindent 4 }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   replicas: {{ .Values.poller.replicaCount }}
   revisionHistoryLimit: 3
@@ -92,6 +92,8 @@ spec:
       # {{- end }}
       containers:
         - name: poller
+          labels:
+            chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
           securityContext:
             {{- toYaml .Values.poller.securityContext | nindent 12 }}
           image: "{{ .Values.poller.image.repository }}:{{ .Values.poller.image.tag | default .Chart.AppVersion }}"

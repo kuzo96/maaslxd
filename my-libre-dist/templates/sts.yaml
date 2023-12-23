@@ -19,6 +19,8 @@ spec:
 {{- end }}
       containers:
       - name: {{ template "fullname" . }}-main
+        labels:
+          chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
