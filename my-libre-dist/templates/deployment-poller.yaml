@@ -31,11 +31,24 @@ spec:
     metadata:
       {{- with .Values.poller.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        traffic.sidecar.istio.io/excludeOutboundPorts: "8200"
+        vault.hashicorp.com/agent-init-first: "true"
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/tls-skip-verify: "true"
+        vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
+        vault.hashicorp.com/agent-inject-template-librenms: |
+         {{- with secret "secret/public-secret/librenms" -}}
+          {
+            "DB_PASSWORD" : "{{ .Data.db }}",
+            "REDIS_PASSWORD" : "{{ .Data.redis }}",
+            "APP_KEY" : "{{ .Data.appkey }}"
+          }
+          {{- end }}
+        vault.hashicorp.com/role: "public-secret-role"
       labels:
         {{- include "poller.labels" . | nindent 8 }}
     spec:
+      serviceAccountName: public-secret
       {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
       topologySpreadConstraints:
         - maxSkew: 1
@@ -166,3 +179,10 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: public-secret
+  labels:
+    app: {{ include "fullname" . }}-poller
