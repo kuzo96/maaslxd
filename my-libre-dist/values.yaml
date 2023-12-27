@@ -19,7 +19,7 @@ ingress:
     #     - chart-example.local
 
 vault:
-  enabled: false
+  enabled: true
   secrets:
     - path: secret/public-secret/librenms
       exports:
