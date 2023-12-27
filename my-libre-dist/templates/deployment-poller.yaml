@@ -36,12 +36,12 @@ spec:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/tls-skip-verify: "true"
         vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
-        vault.hashicorp.com/agent-inject-template-librenms: |-
-          {{`{{- with secret `}}"{{ .Values.vault.secret_path }}"{{` -}}`}}
-          {{`{{- range $k, $v := .Data.data }}`}}
-          {{`{{ $k }}={{ $v }}`}}
-          {{`{{- end }}`}}
-          {{`{{- end }}`}}
+        vault.hashicorp.com/agent-inject-template-librenms: |
+          {{`{{ with secret "secret/public-secret/librenms" }}
+          {{ range $k, $v := .Data.data }}
+            export {{ $k }}={{ $v }}
+          {{ end }}
+          {{ end }}`}}
         vault.hashicorp.com/role: "public-secret-role"
       labels:
         {{- include "poller.labels" . | nindent 8 }}
