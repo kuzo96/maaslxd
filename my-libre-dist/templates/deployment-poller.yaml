@@ -36,7 +36,7 @@ spec:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/tls-skip-verify: "true"
         vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
-        vault.hashicorp.com/agent-inject-template-librenms: |
+        vault.hashicorp.com/agent-inject-template-librenms: |-
           {{`{{- with secret `}}"{{ .Values.vault.secret_path }}"{{` -}}`}}
           {{`{{- range $k, $v := .Data.data }}`}}
           {{`{{ $k }}={{ $v }}`}}
