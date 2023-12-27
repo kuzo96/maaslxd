@@ -4,8 +4,8 @@ metadata:
   name: vault-agent-config
 data:
   vault-agent-config.hcl: |-
-    {{`{{ with secret "secret/public-secret/librenms" }}
-    {{ range $k, $v := .Data.data }}
-    export {{ $k }}={{ $v }}
-    {{ end }}
-    {{ end }}`}}
+    {{`{{- with secret `}}"{{ .Values.vault.secret_path }}"{{` -}}`}}
+    {{`{{- range $k, $v := .Data.data }}`}}
+    {{`{{ $k }}={{ $v }}`}}
+    {{`{{- end }}`}}
+    {{`{{- end }}`}}
