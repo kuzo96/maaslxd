@@ -47,9 +47,9 @@
 			}
 
 			stage('Build docker and push to registry') 
-			 {
-			//   steps 
-			//   {
+			{
+			  steps 
+			  {
 			// 	script {
 			// 			// sh "chmod +x -R prebuildfs"
 			// 			// sh "chmod +x -R rootfs"
@@ -63,7 +63,7 @@
 			// 			sh "docker rmi ${DOCKER_IMAGE}:${version} -f"		
 			// 		//	sh "docker rmi ${DOCKER_IMAGE}:latest -f"				
 			// 		}
-			//   }
+			  }
 			}
 			stage('Precheck Kubernetes Cluster') {
 				steps {
