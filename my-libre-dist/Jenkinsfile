@@ -2,7 +2,7 @@
 	def gitRepository = 'http://172.10.0.5/root/charts.git'
 	def gitBranch = 'main'
 
-	// Image infor in registry
+	// Image infor in registrys
 	def imageGroup = 'staging'
 	def appName = "my-libre-dist"
 	def namespace = "public"
