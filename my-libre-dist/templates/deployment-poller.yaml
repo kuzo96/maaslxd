@@ -43,7 +43,6 @@ spec:
       labels:
         {{- include "poller.labels" . | nindent 8 }}
     spec:
-      # serviceAccountName: public-secret
       {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
       topologySpreadConstraints:
         - maxSkew: 1
