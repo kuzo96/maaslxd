@@ -17,8 +17,16 @@ ingress:
     # - secretName: chart-example-tls
     #   hosts:
     #     - chart-example.local
+
 vault:
-  secret_path: secret/public-secret/librenms
+  enabled: false
+  secrets:
+    - path: secret/public-secret/librenms
+      exports:
+        DB_PASSWORD: db
+        REDIS_PASSWORD: redis 
+        APP_KEY: appkey
+
 hpa:
   enabled: true
   minReplicas: 1
