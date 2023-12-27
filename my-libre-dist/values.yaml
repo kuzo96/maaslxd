@@ -28,7 +28,7 @@ vault:
         APP_KEY: appkey
 serviceAccount:
   create: true
-  name: 
+  name: public-secret
 hpa:
   enabled: true
   minReplicas: 1
