@@ -26,7 +26,9 @@ vault:
         DB_PASSWORD: db
         REDIS_PASSWORD: redis 
         APP_KEY: appkey
-
+serviceAccount:
+  create: true
+  name: 
 hpa:
   enabled: true
   minReplicas: 1
@@ -67,15 +69,6 @@ persistence:
   accessModes:
       #- ReadWriteMany
     - ReadWriteOnce
-    
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: false
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
 
 imagePullSecrets: []
 nameOverride: ""
