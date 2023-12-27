@@ -46,8 +46,8 @@
 			  }
 			}
 
-			// stage('Build docker and push to registry') 
-			// {
+			stage('Build docker and push to registry') 
+			 {
 			//   steps 
 			//   {
 			// 	script {
@@ -64,7 +64,7 @@
 			// 		//	sh "docker rmi ${DOCKER_IMAGE}:latest -f"				
 			// 		}
 			//   }
-			// }
+			}
 			stage('Precheck Kubernetes Cluster') {
 				steps {
 					script {
