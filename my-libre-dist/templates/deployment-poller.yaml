@@ -31,7 +31,6 @@ spec:
     metadata:
       {{- with .Values.poller.podAnnotations }}
       annotations:
-        {{- if .Values.vault.enabled }}
         traffic.sidecar.istio.io/excludeOutboundPorts: "8200"
         vault.hashicorp.com/agent-init-first: "true"
         vault.hashicorp.com/agent-inject: "true"
@@ -39,7 +38,6 @@ spec:
         vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
         vault.hashicorp.com/agent-inject-template-librenms: vault-agent-config
         vault.hashicorp.com/role: "public-secret-role"
-        {{- end }}
       {{- end }}
       labels:
         {{- include "poller.labels" . | nindent 8 }}

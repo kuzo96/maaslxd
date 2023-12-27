@@ -133,7 +133,7 @@ poller:
     # cloud: "openstack"
   tolerations: []
   affinity: {}
-  podAnnotations: {}
+  podAnnotations: true
   podSecurityContext: {}
   securityContext: *defaultSecurityContext
   resources:
