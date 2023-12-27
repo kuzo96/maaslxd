@@ -31,7 +31,7 @@ spec:
     metadata:
       {{- with .Values.poller.podAnnotations }}
       annotations:
-        {{- toYaml . | nindent 8 }}
+        {{- if .Values.vault.enabled }}
         traffic.sidecar.istio.io/excludeOutboundPorts: "8200"
         vault.hashicorp.com/agent-init-first: "true"
         vault.hashicorp.com/agent-inject: "true"
