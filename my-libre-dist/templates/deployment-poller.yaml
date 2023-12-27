@@ -38,10 +38,10 @@ spec:
         vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
         vault.hashicorp.com/agent-inject-template-librenms: |
           {{`{{- with secret `}}"{{ .Values.vault.secret_path }}"{{` -}}`}}
-          {{- range $key, $value := .Data.data }}
-          export {{ $key }}='{{ $value }}'
-          {{- end }}
-          {{- end -}}
+          {{`{{- range $k, $v := .Data.data }}`}}
+          {{`{{ $k }}={{ $v }}`}}
+          {{`{{- end }}`}}
+          {{`{{- end }}`}}
         vault.hashicorp.com/role: "public-secret-role"
       labels:
         {{- include "poller.labels" . | nindent 8 }}
