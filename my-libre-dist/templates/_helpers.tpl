@@ -145,7 +145,7 @@ Define the common environment variables for LibreNMS app
 */}}
 {{- define "environment_ref_default" -}}
 - secretRef:
-    name: {{ include "fullname" . }}-env
+    name: {{ include "fullname" . }}-vault
 - configMapRef:
     name: {{ include "fullname" . }}-env
 {{- end }}

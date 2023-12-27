@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: env-config
+  name: {{ include "fullname" . }}-env
   labels:
     {{- include "labels" . | nindent 4 }}
 data:
