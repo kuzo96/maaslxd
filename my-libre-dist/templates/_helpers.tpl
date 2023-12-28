@@ -144,8 +144,8 @@ Create the name of the service account to use
 Define the common environment variables for LibreNMS app
 */}}
 {{- define "environment_ref_default" -}}
-- secretRef:
-    name: {{ include "fullname" . }}-env
+# - secretRef:
+#     name: {{ include "fullname" . }}-env
 - configMapRef:
     name: {{ include "fullname" . }}-env
 {{- end }}
