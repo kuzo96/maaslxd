@@ -26,6 +26,19 @@ vault:
         DB_PASSWORD: db
         REDIS_PASSWORD: redis 
         APP_KEY: appkey
+annotations:
+  traffic.sidecar.istio.io/excludeOutboundPorts: "8200"
+  vault.hashicorp.com/agent-init-first: "true"
+  vault.hashicorp.com/agent-inject: "true"
+  vault.hashicorp.com/tls-skip-verify: "true"
+  vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
+  vault.hashicorp.com/agent-inject-template-librenms: |
+    {{`{{- with secret "secret/public-secret/librenms" -}}
+    {{- range $key, $value := .Data.data }}
+    export {{ $key }}='{{ $value }}'
+    {{- end }}
+    {{- end -}}`}}
+  vault.hashicorp.com/role: "public-secret-role"
 serviceAccount:
   create: true
   name: public-secret
