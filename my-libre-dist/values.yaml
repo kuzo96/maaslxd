@@ -34,11 +34,10 @@ annotations:
   vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
   vault.hashicorp.com/agent-inject-template-librenms: |
     {{- with secret "secret/public-secret/librenms" -}}
-    {
-      "DB_PASSWORD" : "{{ .Data.db }}",
-      "REDIS_PASSWORD" : "{{ .Data.redis }}"
-      "APP_KEY" : "{{ .Data.appkey }}"
-    }
+      echo 'DB_PASSWORD="{{ .Data.db }}",
+      REDIS_PASSWORD="{{ .Data.redis }}"
+      APP_KEY="{{ .Data.appkey }}"
+      ' > /opt/librenms/.env
     {{- end }}
   vault.hashicorp.com/role: "public-secret-role"
 serviceAccount:
