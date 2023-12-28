@@ -33,11 +33,13 @@ annotations:
   vault.hashicorp.com/tls-skip-verify: "true"
   vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
   vault.hashicorp.com/agent-inject-template-librenms: |
-    {{`{{- with secret "secret/public-secret/librenms" -}}
-    {{- range $key, $value := .Data.data }}
-    export {{ $key }}='{{ $value }}'
+    {{- with secret "secret/public-secret/librenms" -}}
+    {
+      "DB_PASSWORD" : "{{ .Data.db }}",
+      "REDIS_PASSWORD" : "{{ .Data.redis }}"
+      "APP_KEY" : "{{ .Data.appkey }}"
+    }
     {{- end }}
-    {{- end -}}`}}
   vault.hashicorp.com/role: "public-secret-role"
 serviceAccount:
   create: true
