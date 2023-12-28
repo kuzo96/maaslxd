@@ -21,6 +21,8 @@ metadata:
   name: {{ include "fullname" . }}-poller
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  annotations:
+{{- toYaml .Values.annotations | nindent 4 }}
 spec:
   replicas: {{ .Values.poller.replicaCount }}
   revisionHistoryLimit: 3
@@ -29,10 +31,6 @@ spec:
       {{- include "poller.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.poller.podAnnotations }}
-      annotations:
-      {{- toYaml .Values.annotations | nindent 8 }}
-      {{- end }}
       labels:
         {{- include "poller.labels" . | nindent 8 }}
     spec:
