@@ -31,7 +31,7 @@ spec:
     metadata:
       {{- with .Values.poller.podAnnotations }}
       annotations:
-      {{- toYaml .Values.annotations | nindent 6 }}
+      {{- toYaml .Values.annotations | nindent 8 }}
       {{- end }}
       labels:
         {{- include "poller.labels" . | nindent 8 }}
