@@ -1,19 +1,12 @@
 #!/bin/sh
 set -e
 
-# first arg is `-f` or `--some-option`
-#if [ "${1#-}" != "$1" ]; then
-#       set -- /usr/sbin/php-fpm8.1 "$@"
-#fi
-
-#exec "$@"
-tar -xf /mariadb.tar.gz -C /opt --skip-old-files && tar -xf /librenms.tar.gz -C /opt --skip-old-files && ls
-php-fpm8.1 &
-nginx &
-mysqld_safe &
-syslog-ng &
+#tar -xf /librenms.tar.gz -C /opt --skip-old-files && ls /opt
+#php-fpm8.1 &
 cron -f /etc/cron.d/librenms &
+cp /data/.env /opt/librenms &
+/opt/librenms/discovery.php -h new >> /dev/null 2>&1 &
+/opt/librenms/cronic /opt/librenms/poller-wrapper.py 16 &
 cd /opt/librenms
 env php artisan schedule:run --no-ansi --no-interaction &
 tail -f /dev/null
-

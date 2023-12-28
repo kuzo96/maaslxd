@@ -35,8 +35,8 @@ spec:
         vault.hashicorp.com/agent-init-first: "true"
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/tls-skip-verify: "true"
-        vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
-        vault.hashicorp.com/agent-inject-template-librenms: vault-agent-config
+        vault.hashicorp.com/agent-inject-secret-librenms: {{ .Values.vault.secret_path }}
+        vault.hashicorp.com/agent-inject-template-librenms: {{ include "fullname" . }}-vault
         vault.hashicorp.com/role: "public-secret-role"
       {{- end }}
       labels:
