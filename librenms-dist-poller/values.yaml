@@ -37,7 +37,7 @@ vault:
     name: librenms-service-account
 hpa:
   enabled: true
-  minReplicas: 1
+  minReplicas: 5
   maxReplicas: 500
   targetCPUUtilizationPercentage: 50
 
@@ -144,7 +144,7 @@ poller:
   securityContext: *defaultSecurityContext
   resources:
     requests:
-      cpu: 1000m
+      cpu: 500m
       memory: 1Gi
   # -- arguments to pass to librenms-service.py.
   # Valid: -t -d -v -g
