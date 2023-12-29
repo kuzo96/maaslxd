@@ -53,8 +53,8 @@
 				script {
 			// 			// sh "chmod +x -R prebuildfs"
 			// 			// sh "chmod +x -R rootfs"
-			// 			// sh "cd $helmChart"
 						sh "pwd"
+						sh "cd $helmChart"
 						app = docker.build(DOCKER_IMAGE_NAME, dockerBuildCommand)
 						docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
 						   app.push(version)
