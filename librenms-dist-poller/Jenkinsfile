@@ -53,6 +53,7 @@
 				script {
 
 			// 			// Build
+						sh "docker rm ${DOCKER_IMAGE}:${version}"
 						sh "docker build -t ${DOCKER_IMAGE}:${version} -f ${DOCKER_FILE} $helmChart"
 						//Authenticating with the Docker registry
 						docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
