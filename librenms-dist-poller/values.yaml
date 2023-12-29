@@ -19,29 +19,22 @@ ingress:
     #     - chart-example.local
 
 vault:
-  enabled: true
-  secrets:
-    - path: secret/public-secret/librenms
-      exports:
-        DB_PASSWORD: db
-        REDIS_PASSWORD: redis 
-        APP_KEY: appkey
-annotations:
-  traffic.sidecar.istio.io/excludeOutboundPorts: "8200"
-  vault.hashicorp.com/agent-init-first: "true"
-  vault.hashicorp.com/agent-inject: "true"
-  vault.hashicorp.com/tls-skip-verify: "true"
-  vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
-  vault.hashicorp.com/agent-inject-template-librenms: |
-    {{- with secret "secret/public-secret/librenms" -}}
-      DB_PASSWORD="{{ .Data.db }}"
-      REDIS_PASSWORD="{{ .Data.redis }}"
-      APP_KEY="{{ .Data.appkey }}"
-    {{- end }}
-  vault.hashicorp.com/role: "public-secret-role"
-serviceAccount:
-  create: true
-  name: public-secret
+  annotations:
+    traffic.sidecar.istio.io/excludeOutboundPorts: "8200"
+    vault.hashicorp.com/agent-init-first: "true"
+    vault.hashicorp.com/agent-inject: "true"
+    vault.hashicorp.com/tls-skip-verify: "true"
+    vault.hashicorp.com/agent-inject-secret-librenms: "secret/public-secret/librenms"
+    vault.hashicorp.com/agent-inject-template-librenms: |
+      {{- with secret "secret/public-secret/librenms" -}}
+        DB_PASSWORD="{{ .Data.db }}"
+        REDIS_PASSWORD="{{ .Data.redis }}"
+        APP_KEY="{{ .Data.appkey }}"
+      {{- end }}
+    vault.hashicorp.com/role: "public-secret-role"
+  serviceAccount:
+    create: true
+    name: librenms-service-account
 hpa:
   enabled: true
   minReplicas: 1
