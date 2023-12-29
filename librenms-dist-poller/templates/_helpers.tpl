@@ -132,10 +132,10 @@ app.kubernetes.io/component: rrdcached
 Create the name of the service account to use
 */}}
 {{- define "serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "fullname" .) .Values.serviceAccount.name }}
+{{- if .Values.vault.serviceAccount.create }}
+{{- default (include "fullname" .) .Values.vault.serviceAccount.name }}
 {{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+{{- default "default" .Values.vault.serviceAccount.name }}
 {{- end }}
 {{- end }}
 
