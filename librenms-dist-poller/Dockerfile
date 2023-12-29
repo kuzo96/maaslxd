@@ -7,5 +7,4 @@ ENTRYPOINT ["/docker-php-entrypoint.sh"]
 
 STOPSIGNAL SIGQUIT
 
-# EXPOSE 80
 CMD ["bash"]

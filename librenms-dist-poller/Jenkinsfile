@@ -51,7 +51,7 @@
 			  steps 
 			  {
 				script {
-
+						sh "pwd"
 			 			// remove old image
 						sh "docker rmi ${DOCKER_IMAGE}:${version}"
 						// build
@@ -62,15 +62,7 @@
 						sh "docker push ${DOCKER_IMAGE}:${version}"
 						}                           		
                 }
-						// app = docker.build(DOCKER_IMAGE_NAME, dockerBuildCommand)
-						// docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
-						//    app.push(version)
-						// }
-				    
-			// // 			sh "docker rmi ${DOCKER_IMAGE_NAME} -f"
-			// 			sh "docker push ${DOCKER_IMAGE}:${version}"		
-			// 		//	sh "docker rmi ${DOCKER_IMAGE}:latest -f"				
-					
+
 			  }
 			}
 			stage('Precheck Kubernetes Cluster') {
