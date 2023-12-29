@@ -54,12 +54,12 @@
 
 			// 			// Build
 						sh "docker build -t ${DOCKER_IMAGE}:${version} -f ${DOCKER_FILE} $helmChart"
-						//Authenticating with the Docker registry
-						withCredentials([usernamePassword(credentialsId: gitlabCredential, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                        sh "echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin ${DOCKER_REGISTRY}"
-                    }
+						// Pushing the Docker image to the registry
+						docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
+						   app.push(version)
+						}
                     // Pushing the Docker image to the registry
-                  		sh "docker push ${DOCKER_IMAGE}:${version}"
+
                 }
 						// app = docker.build(DOCKER_IMAGE_NAME, dockerBuildCommand)
 						// docker.withRegistry( DOCKER_REGISTRY, registryCredential ) {                       
