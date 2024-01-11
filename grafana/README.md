@@ -1,6 +1,13 @@
 <!--- app-name: Grafana -->
 
-# Grafana packaged by Bitnami
+# Grafana packaged by CPT
+
+
+Default
+- username: admin
+- password: admin
+- URL: grafana.cpt.gov.vn
+
 
 Grafana is an open source metric analytics and visualization suite for visualizing time series data that supports various types of data sources.
 
