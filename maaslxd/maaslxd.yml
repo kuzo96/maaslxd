@@ -39,17 +39,17 @@ packages:
 snap:
   commands:
     - snap install maas
-#    - snap install --channel=3.4/stable maas
+#   - snap install --channel=3.4/stable maas
     - snap install --channel=latest/stable lxd
     - snap refresh --channel=latest/stable lxd
     - snap install maas-test-db
 runcmd:
 # Fetch IPv4 address from the device, setup forwarding and NAT
-- export IP_ADDRESS=$(ip -j route show default | jq -r '.[].prefsrc')
+#- export IP_ADDRESS=$(ip -j route show default | jq -r '.[].prefsrc')
 - export INTERFACE=$(ip -j route show default | jq -r '.[].dev')
 - sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/' /etc/sysctl.conf
 - sysctl -p
-- iptables -t nat -A POSTROUTING -o $INTERFACE -j SNAT --to $IP_ADDRESS
+- iptables -t nat -A POSTROUTING -o $INTERFACE -j SNAT --to 10.10.24.97
 # Persist NAT configuration
 - echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
 - echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
@@ -59,7 +59,7 @@ runcmd:
 # Wait for LXD to be ready
 - lxd waitready
 # Initialise MAAS
-- maas init region+rack --database-uri maas-test-db:/// --maas-url http://${IP_ADDRESS}:5240/MAAS
+- maas init region+rack --database-uri maas-test-db:/// --maas-url http://10.10.24.97:5240/MAAS
 - sleep 15
 # Create MAAS admin and grab API key
 - maas createadmin --username admin --password admin --email admin
@@ -72,11 +72,11 @@ runcmd:
 - export VLAN_TAG=$(maas admin subnet read "$SUBNET" | jq -r ".vlan.vid")
 - export PRIMARY_RACK=$(maas admin rack-controllers read | jq -r ".[] | .system_id")
 - maas admin subnet update $SUBNET gateway_ip=10.10.24.1
-- maas admin ipranges create type=dynamic start_ip=10.10.24.200 end_ip=10.10.24.254
+- maas admin ipranges create type=dynamic start_ip=10.10.24.97 end_ip=10.10.24.254
 - maas admin vlan update $FABRIC_ID $VLAN_TAG dhcp_on=True primary_rack=$PRIMARY_RACK
 - maas admin maas set-config name=upstream_dns value=8.8.8.8
 # Add LXD as a VM host for MAAS
-- maas admin vm-hosts create  password=password  type=lxd power_address=https://${IP_ADDRESS}:8443 project=maas
+- maas admin vm-hosts create  password=password  type=lxd power_address=https://10.10.24.97:8443 project=maas
 # Automatically create and add ssh keys to MAAS
 - ssh-keygen -q -t rsa -N "" -f "/home/ubuntu/.ssh/id_rsa"
 - chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa /home/ubuntu/.ssh/id_rsa.pub
